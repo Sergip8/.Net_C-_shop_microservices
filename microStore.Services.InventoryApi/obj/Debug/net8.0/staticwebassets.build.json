@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Nr8shAyo+Vver7Isp2d++2zdzudaSf7Ih7Uqlp7lV+w=",
+  "Source": "microStore.Services.InventoryApi",
+  "BasePath": "_content/microStore.Services.InventoryApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

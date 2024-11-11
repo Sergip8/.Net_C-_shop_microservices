@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "V2D/quass+8yDkT+tpLuqyiWygry6Ytpaah5tPKqI48=",
+  "Source": "microStore.Services.CouponApi",
+  "BasePath": "_content/microStore.Services.CouponApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

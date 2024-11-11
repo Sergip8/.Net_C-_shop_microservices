@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "1hLR7Dawv7x6Dz/jTASsLu6+3PFvrrC72sZOj6kmgAQ=",
+  "Source": "microStore.Services.ShoppingCartApi",
+  "BasePath": "_content/microStore.Services.ShoppingCartApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

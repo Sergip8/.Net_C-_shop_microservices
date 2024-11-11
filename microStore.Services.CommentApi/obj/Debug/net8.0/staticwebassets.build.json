@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "0F/2DW2LNWfReADWvTw2IbqFL9tcMk53OtF9PGWh+kw=",
+  "Source": "microStore.Services.CommentApi",
+  "BasePath": "_content/microStore.Services.CommentApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

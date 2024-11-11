@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "QNGJW0TxBGN4+kdyrLM30K+AZW+Rv//OSLt4jfndXl4=",
+  "Source": "microStore.Services.AuthApi",
+  "BasePath": "_content/microStore.Services.AuthApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
