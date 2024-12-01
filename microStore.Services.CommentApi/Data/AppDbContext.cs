@@ -18,10 +18,10 @@ namespace microStore.Services.CommentApi.Data
             modelBuilder.Entity<CommentHeader>().HasData(new CommentHeader
             {
                 CommentHeaderId = 1,
-                OverallScore = 2,
+                OverallScore = 2f,
                 QtyForStar = "",
                 CommentCount = 7,
-                ProductId = 20
+                ProductId = 3
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
                 CommentId = 1,

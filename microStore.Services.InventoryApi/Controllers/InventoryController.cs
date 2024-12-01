@@ -18,7 +18,6 @@ namespace microStore.Services.InventoryApi.Controllers
         {
             _db = db;
             _response = new ResponseDTO();
-
         }
 
         [HttpGet]

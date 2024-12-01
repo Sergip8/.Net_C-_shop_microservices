@@ -1,0 +1,66 @@
+services:
+  mssqldata:
+    container_name: mssqldata
+    environment:
+      SA_PASSWORD: "aDmin1234!"
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+      - "5433:1433"
+    volumes: 
+      - fs_mssqldata:/var/opt/mssql
+  products:
+    container_name: products
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Product;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8003:8080"
+  shoppingcart:
+    container_name: shoppingcart
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_ShoppingCart;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8001:8080"
+  inventory:
+    container_name: inventory
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Inventory;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8005:8080"
+  coupon:
+    container_name: coupon
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Coupon;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8004:8080" 
+  comments:
+    container_name: comments
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Comments;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8007:8080"
+  auth:
+    container_name: auth
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Auth;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8002:8080"
+  gateway:
+    container_name: gateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8000:8080"
+volumes:
+  fs_mssqldata:
+    external: false
+  postgres_data:
+    external: false
+  seq_data:
+    external: false

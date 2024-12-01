@@ -33,12 +33,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient("Inventory", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:InventoryApi"]));
 builder.Services.AddHttpClient("Comment", p => p.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CommentApi"]));
-
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 //builder.AddAppAuthentication();
 builder.Services.AddAuthorization();
-builder.WebHost.UseUrls("https://localhost:8003;http://localhost:5011");
+builder.WebHost.UseUrls("http://0.0.0.0:8080");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,22 +50,20 @@ if (app.Environment.IsDevelopment())
 app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
-ApplyMigration();
+//ApplyMigration();
 
 app.Run();
 
-void ApplyMigration()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        if (_db.Database.GetPendingMigrations().Count() > 0)
-        {
-            _db.Database.Migrate();
-        }
-    }
-}
+//void ApplyMigration()
+//{
+//    using (var scope = app.Services.CreateScope())
+//    {
+//        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//        if (_db.Database.GetPendingMigrations().Count() > 0)
+//        {
+//            _db.Database.Migrate();
+//        }
+//    }
+//}

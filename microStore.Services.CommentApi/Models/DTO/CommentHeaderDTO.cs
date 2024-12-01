@@ -7,7 +7,7 @@
         public string QtyForStar { get; set; }
         public int CommentCount { get; set; }
         public int ProductId { get; set; }
-        public int[] ScoreList { get; set; }
+        public int[]? ScoreList { get; set; }
         public IEnumerable<CommentDTO> Comments { get; set; }
 
     }

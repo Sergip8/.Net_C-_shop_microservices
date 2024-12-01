@@ -62,7 +62,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 1,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5579),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -72,7 +72,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 2,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5602),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -82,7 +82,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 3,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5615),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -92,7 +92,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 4,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5628),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -102,7 +102,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 5,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5640),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -112,7 +112,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 6,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5673),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -122,7 +122,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 7,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5686),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -140,8 +140,8 @@ namespace microStore.Services.CommentApi.Migrations
                     b.Property<int>("CommentCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("OverallScore")
-                        .HasColumnType("int");
+                    b.Property<float>("OverallScore")
+                        .HasColumnType("real");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -159,7 +159,7 @@ namespace microStore.Services.CommentApi.Migrations
                         {
                             CommentHeaderId = 1,
                             CommentCount = 7,
-                            OverallScore = 2,
+                            OverallScore = 2f,
                             ProductId = 20,
                             QtyForStar = ""
                         });

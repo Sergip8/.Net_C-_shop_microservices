@@ -1,0 +1,6 @@
+@microStore.ApiGateway_HostAddress = http://localhost:5048
+
+GET {{microStore.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

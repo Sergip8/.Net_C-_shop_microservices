@@ -4,14 +4,22 @@ namespace microStore.Services.ProductApi.Models.DTO
 {
     public class ProductDTO
     {
+        public BrandProductDTO Brand { get; set; }
+        public List<CategoryProductDTO> Categories { get; set; }
+        public List<ImageProductDTO> Images { get; set; }
+        public ProductBasicDTO Product { get; set; }
+    }
+    public class ProductBasicDTO
+    {
         public int ProductId { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public string Link { get; set; }
         public string Description { get; set; }
-        public List<ImageProductDTO> ImageUrls { get; set; }
-        public int BrandId { get; set; }
-        public List<int> CategoryIds { get; set; }
+        public decimal Current_price { get; set; }
+        public decimal Previous_price { get; set; }
+
     }
+
     public record ProductIdsRequest
     {
         public List<int> ProductIds { get; set; }
@@ -25,6 +33,11 @@ namespace microStore.Services.ProductApi.Models.DTO
     {
         public int BrandId { get; set; }
         public string BrandName { get; set; }
+    }
+    public class PriceProductDTO
+    {
+        public int highPrice { get; set; }
+        public string lowPrice { get; set; }
     }
     public class ImageProductDTO
     {

@@ -143,8 +143,8 @@ namespace microStore.Services.CommentApi.Migrations
                     b.Property<int>("CommentCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("OverallScore")
-                        .HasColumnType("int");
+                    b.Property<float>("OverallScore")
+                        .HasColumnType("real");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -162,7 +162,7 @@ namespace microStore.Services.CommentApi.Migrations
                         {
                             CommentHeaderId = 1,
                             CommentCount = 7,
-                            OverallScore = 2,
+                            OverallScore = 2f,
                             ProductId = 20,
                             QtyForStar = ""
                         });

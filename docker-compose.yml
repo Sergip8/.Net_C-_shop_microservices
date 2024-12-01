@@ -1,0 +1,70 @@
+version: '3.9'
+services:
+  mssqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest    
+    networks:
+      - backend
+  products:
+    build:
+      context: .
+      dockerfile: microStore.Services.ProductApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend 
+  inventory:
+    build:
+      context: .
+      dockerfile: microStore.Services.InventoryApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
+  auth:
+    build:
+      context: .
+      dockerfile: microStore.Services.AuthApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
+  shoppingcart:
+    build:
+      context: .
+      dockerfile: microStore.Services.ShoppingCartApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
+  coupon:
+    build:
+      context: .
+      dockerfile: microStore.Services.CouponApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
+  comments:
+    build:
+      context: .
+      dockerfile: microStore.Services.CommentApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
+  gateway:
+    build:
+      context: .
+      dockerfile: microStore.ApiGateway/Dockerfile
+    depends_on:
+      - products
+      - shoppingcart
+      - coupon 
+      - comments 
+      - inventory  
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

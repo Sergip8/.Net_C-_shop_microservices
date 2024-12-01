@@ -73,35 +73,22 @@ namespace microStore.Services.ProductApi.Controllers
                     brand => brand.BrandId,
                     (product, brand) => new
                     {
-
                         product,
                         brand,
-
-                    }).Join(
-                    _db.PriceRanges,
-                    pb => pb.product.PriceRangeId,
-                    price => price.PriceRangeId,
-                    (pb, price) => new
-                    {
-                        pb.product,
-                        pb.brand,
-                        price = new
-                        {
-                            price.HighPrice,
-                            price.LowPrice
-                        },
-                        categories = pb.product.Categories.Select(c => new
+                        categories = product.Categories.Select(c => new
                         {
                             c.CategoryId,
                             c.CategoryName
 
                         }).ToList(),
-                        images = pb.product.Images.Select(c => new
+                        images = product.Images.Select(c => new
                         {
+                            c.ImageId,
                             c.ImageUrl,
                             c.ImageLabel
 
                         }).ToList()
+
                     }).OrderByDescending(p => p.product.ProductId)
                     .Skip((page - 1) * size).Take(size)
                      .ToList();
@@ -142,21 +129,7 @@ namespace microStore.Services.ProductApi.Controllers
 
                         product,
                         brand,
-
-                    }).Join(
-                    _db.PriceRanges,
-                    pb => pb.product.PriceRangeId,
-                    price => price.PriceRangeId,
-                    (pb, price) => new
-                    {
-                        pb.product,
-                        pb.brand,
-                        price = new
-                        {
-                            price.HighPrice,
-                            price.LowPrice
-                        },
-                        categories = pb.product.Categories.Select(c => new
+                        categories = product.Categories.Select(c => new
                         {
                             c.CategoryId,
                             c.CategoryName,
@@ -164,14 +137,14 @@ namespace microStore.Services.ProductApi.Controllers
                             c.CategoryParentId
 
                         }).ToList(),
-                        images = pb.product.Images.Select(c => new
+                        images = product.Images.Select(c => new
                         {
                             c.ImageUrl,
                             c.ImageLabel
 
                         }).ToList(),
 
-                        properties = pb.product.Properties.Join(
+                        properties = product.Properties.Join(
                              _db.Properties,
                         propertiesValue => propertiesValue.PropertyId,
                          properties => properties.PropertyId,
@@ -221,11 +194,11 @@ namespace microStore.Services.ProductApi.Controllers
                 {
                     if (requestDTO.Order.Direction.ToLower().Equals("asc"))
                     {
-                        query = query.OrderBy(o => o.price.LowPrice);
+                        query = query.OrderBy(o => o.product.Current_price);
                     }
                     else
                     {
-                        query = query.OrderByDescending(o => o.price.LowPrice);
+                        query = query.OrderByDescending(o => o.product.Current_price);
                     }
 
                 }
@@ -317,6 +290,7 @@ namespace microStore.Services.ProductApi.Controllers
         {
             try
             {
+                dynamic data = new System.Dynamic.ExpandoObject();
                 var product = _db.Products.Where(x => x.Link == pp.Link)
                     .Join(
                     _db.Brands,
@@ -328,43 +302,17 @@ namespace microStore.Services.ProductApi.Controllers
                         product,
                         brand,
 
-                    }).Join(
-                    _db.PriceRanges,
-                    pb => pb.product.PriceRangeId,
-                    price => price.PriceRangeId,
-                    (pb, price) => new ProductDetailsDTO
-                    {
-                        Product = new ProductBaseDTO
-                        {
-                            ProductId = pb.product.ProductId,
-                            Name = pb.product.Name,
-                            Description = pb.product.Description,
-                            Link = pb.product.Link,
-                        },
-                        Brand = new BrandDTO
-                        {
-                            BrandId = pb.brand.BrandId,
-                            BrandName = pb.brand.BrandName,
-                        },
 
-                        Price = new PriceRangeDTO
-
+                        Images = product.Images.Select(c =>
+                        new
                         {
-                            HighPrice = price.HighPrice,
-                            LowPrice = price.LowPrice,
-                        },
-
-                        Images = pb.product.Images.Select(c =>
-                        new ImageProductDTO
-                        {
-                            ImageLabel = c.ImageLabel,
-                            ImageUrl = c.ImageUrl,
+                            c.ImageUrl,
+                            c.ImageLabel
                         }).ToList(),
-
 
                     }).First();
 
-                var properties = _db.ProductPropertyValues.Where(x => x.ProductId == product.Product.ProductId).Select(p =>
+                var properties = _db.ProductPropertyValues.Where(x => x.ProductId == product.product.ProductId).Select(p =>
                         new
                         {
                             Propertyvalue = p.PropertyValue.PropertyValueName,
@@ -399,20 +347,23 @@ namespace microStore.Services.ProductApi.Controllers
         }).ToList()
     })
     .ToList();
-                product.Properties = groupedData;
+                data.properties = groupedData;
 
-                var inventory = await _inventoryService.GetInventory(product.Product.ProductId);
-                product.Inventory = inventory;
+                var inventory = await _inventoryService.GetInventory(product.product.ProductId);
+                data.inventory = inventory;
 
-                var commets = await _commentService.GetCommentsAsync(product.Product.ProductId, pp.Page, pp.Size);
-                product.Comment = commets;
+                //var commets = await _commentService.GetCommentsAsync(product.product.ProductId, pp.Page, pp.Size);
+                //data.comment = commets;
+                data.product = product.product;
+                data.brand = product.brand;
+                data.images = product.Images;
 
                 if (product == null)
                 {
                     _response.Success = false;
                     _response.Message = "El producto no existe";
                 }
-                _response.Data = product;
+                _response.Data = data;
 
             }
             catch (Exception e)
@@ -441,20 +392,7 @@ namespace microStore.Services.ProductApi.Controllers
                         product,
                         brand,
 
-                    }).Join(
-                    _db.PriceRanges,
-                    pb => pb.product.PriceRangeId,
-                    price => price.PriceRangeId,
-                    (pb, price) => new
-                    {
-                        pb.product,
-                        pb.brand,
-                        price = new 
-                        {
-                            price.HighPrice,
-                            price.LowPrice
-                        },
-                        categories = pb.product.Categories.Select(c => new
+                        categories = product.Categories.Select(c => new
                         {
                             c.CategoryId,
                             c.CategoryName,
@@ -462,7 +400,7 @@ namespace microStore.Services.ProductApi.Controllers
                             c.CategoryParentId
 
                         }).ToList(),
-                        images = pb.product.Images.Select(c => new
+                        images = product.Images.Select(c => new
                         {
                             c.ImageUrl,
                             c.ImageLabel
@@ -472,9 +410,7 @@ namespace microStore.Services.ProductApi.Controllers
 
                     }).Take(10).ToList();
 
-                    
-
-            if (product == null)
+                if (product == null)
                 {
                     _response.Success = false;
                     _response.Message = "El producto no existe";
@@ -499,36 +435,25 @@ namespace microStore.Services.ProductApi.Controllers
             {
                 try
                 {
-                    IEnumerable<ProductImages> images = [];
-                    PriceRange price = new()
-                    {
-                        HighPrice = 0,
-                        LowPrice = productDTO.Price,
-                        PriceRangeId = 0
-                    };
-                    await _db.PriceRanges.AddAsync(price);
-                    await _db.SaveChangesAsync();
-
-
+                    var categoryIds = productDTO.Categories.Select(c => c.CategoryId);
                     IEnumerable<Category> categories = _db.Categories
-                                           .Where(c => productDTO.CategoryIds.Contains(c.CategoryId))
+                                           .Where(c => categoryIds.Contains(c.CategoryId))
                                            .ToList();
 
                     Product product = _mapper.Map<Product>(productDTO);
                     product.Categories = categories;
-                    product.PriceRangeId = price.PriceRangeId;
                     product.Link = product.Name.ToLower().Replace(" ", "-");
                     _db.Products.Add(product);
 
                     await _db.SaveChangesAsync();
-                    foreach (var image in productDTO.ImageUrls)
+                    foreach (var image in productDTO.Images)
                     {
                         ProductImages img = new()
                         {
                             ImageId = 0,
                             ImageLabel = image.ImageLabel,
                             ImageUrl = image.ImageUrl,
-                            ProductId = product.ProductId
+
                         };
                         await _db.ProductImages.AddAsync(img);
                         await _db.SaveChangesAsync();
@@ -555,6 +480,7 @@ namespace microStore.Services.ProductApi.Controllers
         {
             try
             {
+
                 List<Product> products = _db.Products
                                       .Where(p => ids.ProductIds.Contains(p.ProductId))
                                       .ToList();
@@ -572,23 +498,48 @@ namespace microStore.Services.ProductApi.Controllers
             return _response;
 
         }
-
+        //[Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPut]
-        [Authorize(Roles = "ADMIN")]
-        public object Put([FromBody] ProductDTO productDTO)
+        //[Authorize(Roles = "ADMIN")]
+        public async Task<object> Put([FromBody] ProductDTO productDTO)
         {
             try
             {
-                IEnumerable<Category> categories = _db.Categories
-                                     .Where(c => productDTO.CategoryIds.Contains(c.CategoryId))
-                                     .ToList();
-                var product = _mapper.Map<Product>(productDTO);
-                product.Categories = categories;
-                _db.Products.Update(product);
 
-                _db.SaveChanges();
+                //var categoryIds = productDTO.Categories.Select(c => c.CategoryId);
+                //IEnumerable<Category> categories = [.. _db.Categories.Where(c => categoryIds.Contains(c.CategoryId))];
 
-                _response.Message = "producto modificado con exito";
+                var productDb = await _db.Products.FindAsync(productDTO.Product.ProductId);
+
+                if (productDb != null)
+                {
+                    productDb.Name = productDTO.Product.Name;
+                    productDb.Link = productDTO.Product.Link;
+                    productDb.Description = productDTO.Product.Description;
+                    productDb.Current_price = productDTO.Product.Current_price;
+                    productDb.Previous_price = productDTO.Product.Previous_price;
+                    productDb.BrandId = productDTO.Brand.BrandId;
+                    //productDb.Categories = categories;
+
+                    _db.Entry(productDb).State = EntityState.Modified;
+                    await _db.SaveChangesAsync();
+
+                    _response.Message = "producto modificado con exito";
+                    _response.Data = productDb;
+                }
+                //Product product = new()
+                //{
+                //    ProductId = productDTO.Product.ProductId,
+                //    Name = productDTO.Product.Name,
+                //    Link = productDTO.Product.Link,
+                //    Description = productDTO.Product.Description,
+                //    Current_price = productDTO.Product.Current_price,
+                //    Previous_price = productDTO.Product.Previous_price,
+                //    BrandId = productDTO.Brand.BrandId,
+
+                //    Categories = categories
+
+                //};
 
             }
             catch (Exception e)

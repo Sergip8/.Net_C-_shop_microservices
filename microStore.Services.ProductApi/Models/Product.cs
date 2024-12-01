@@ -12,12 +12,11 @@ namespace microStore.Services.ProductApi.Models
         public string Name { get; set; }
         public string Link { get; set; }
         public string Description { get; set; }
-        [JsonIgnore]
+        public decimal Current_price { get; set; }
+        public decimal Previous_price { get; set; }
         public int BrandId { get; set; }
         [JsonIgnore]
         public IEnumerable<Category> Categories { get; set; }
-        [JsonIgnore]
-        public int PriceRangeId { get; set; }
         [JsonIgnore]
         public IEnumerable<ProductImages> Images { get; set; }
         [JsonIgnore]
@@ -27,6 +26,11 @@ namespace microStore.Services.ProductApi.Models
     public class ProductsCategories
     {
         public int CategoryId { get; set; }
+        public int ProductId { get; set; }
+    }
+    public class ProductsImages
+    {
+        public int ImageId { get; set; }
         public int ProductId { get; set; }
     }
 }

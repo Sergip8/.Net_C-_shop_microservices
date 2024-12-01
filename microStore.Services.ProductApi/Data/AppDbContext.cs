@@ -15,7 +15,7 @@ namespace microStore.Services.ProductApi.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<ProductImages> ProductImages { get; set; }
-        public DbSet<PriceRange> PriceRanges { get; set; }
+        public DbSet<ProductsImages> ProductsImages { get; set; }
         public DbSet<ProductsCategories> ProductsCategories { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyValue> PropertyValues { get; set; }
@@ -34,11 +34,19 @@ namespace microStore.Services.ProductApi.Data
                         .UsingEntity<ProductsCategories>(
                         l => l.HasOne<Category>().WithMany().HasForeignKey(e => e.CategoryId),
                         r => r.HasOne<Product>().WithMany().HasForeignKey(e => e.ProductId)
-                );
+                ).HasKey(pi => new { pi.ProductId, pi.CategoryId });
+            modelBuilder.Entity<Product>()
+                       .HasMany(e => e.Images)
+                       .WithMany(e => e.Products)
+                       .UsingEntity<ProductsImages>(
+                       l => l.HasOne<ProductImages>().WithMany().HasForeignKey(e => e.ImageId),
+                       r => r.HasOne<Product>().WithMany().HasForeignKey(e => e.ProductId)
+               ).HasKey(pi => new { pi.ProductId, pi.ImageId });
             modelBuilder.Entity<Product>()
                         .HasMany(e => e.Properties)
                         .WithMany(e => e.Products)
-                        .UsingEntity<ProductPropertyValue>();
+                        .UsingEntity<ProductPropertyValue>()
+                        .HasKey(ppv => new { ppv.ProductId, ppv.PropertyValueId });
 
             modelBuilder.Entity<PropertyType>()
                 .HasMany(e => e.Properties)
@@ -46,49 +54,49 @@ namespace microStore.Services.ProductApi.Data
                 .HasForeignKey(e => e.PropertyTypeId)
                 .IsRequired();
             modelBuilder.Entity<Property>()
-                .HasMany(e => e.PropertyValues)
-                .WithOne()
-                .HasForeignKey(e => e.PropertyValueId)
-                .IsRequired();
-            //        (
-            //        l => l.HasOne<PropertyValue>().WithMany().HasForeignKey(e => e.PropertyValue),
-            //        r => r.HasOne<Product>().WithMany().HasForeignKey(e => e.ProductId)
-            //);
+                 .HasMany(p => p.PropertyValues)
+                 .WithOne(pv => pv.Property)
+                 .HasForeignKey(pv => pv.PropertyId)
+                 .IsRequired();
 
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 1,
                 Name = "Samosa",
-                Link = "",
+                Link = "samosa-1",
+                Current_price = 3000000,
+                Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
-
                 BrandId = 1,
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 2,
                 Name = "Paneer Tikka",
-                Link = "",
+                Link = "paneer-tikka-2",
+                Current_price = 3000000,
+                Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
-
                 BrandId = 2,
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 3,
                 Name = "Sweet Pie",
-                Link = "",
+                Link = "sweet-pie-3",
+                Current_price = 3000000,
+                Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
-
                 BrandId = 3,
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 ProductId = 4,
                 Name = "Pav Bhaji",
-                Link = "",
+                Link = "pav-bhaji-4",
+                Current_price = 3000000,
+                Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
-
                 BrandId = 4,
             });
             modelBuilder.Entity<Brand>().HasData(new Brand
@@ -152,6 +160,82 @@ namespace microStore.Services.ProductApi.Data
                 CategoryParentId = 4
             });
 
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 1,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 7,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 2,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 3,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 4,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 5,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+            modelBuilder.Entity<ProductImages>().HasData(new ProductImages
+            {
+                ImageId = 6,
+                ImageLabel = "image1",
+                ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+
+            });
+
+
+            modelBuilder.Entity<ProductsImages>().HasData(
+      new ProductsImages { ImageId = 1, ProductId = 2 },
+      new ProductsImages { ImageId = 2, ProductId = 2 },
+      new ProductsImages { ImageId = 3, ProductId = 1 },
+      new ProductsImages { ImageId = 4, ProductId = 3 },
+      new ProductsImages { ImageId = 5, ProductId = 3 },
+      new ProductsImages { ImageId = 6, ProductId = 4 },
+      new ProductsImages { ImageId = 7, ProductId = 4 }
+  );
+            modelBuilder.Entity<ProductsCategories>().HasData(
+    new ProductsCategories { CategoryId = 1, ProductId = 2 },
+    new ProductsCategories { CategoryId = 2, ProductId = 2 },
+    new ProductsCategories { CategoryId = 3, ProductId = 2 },
+    new ProductsCategories { CategoryId = 1, ProductId = 3 },
+    new ProductsCategories { CategoryId = 2, ProductId = 3 },
+    new ProductsCategories { CategoryId = 3, ProductId = 3 },
+     new ProductsCategories { CategoryId = 1, ProductId = 1 },
+    new ProductsCategories { CategoryId = 2, ProductId = 1 },
+    new ProductsCategories { CategoryId = 3, ProductId = 1 },
+     new ProductsCategories { CategoryId = 1, ProductId = 4 },
+    new ProductsCategories { CategoryId = 2, ProductId = 4 },
+    new ProductsCategories { CategoryId = 3, ProductId = 4 }
+
+
+);
             //////////////////////////////////////
 
             modelBuilder.Entity<PropertyType>().HasData(new PropertyType

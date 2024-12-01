@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f3782be8-4f59-453d-9b4f-8ef75b86d6bf")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("microStore.Services.AuthApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdfc83abdeb7420dbbf1f7abbe317e720a7ded1a")]
 [assembly: System.Reflection.AssemblyProductAttribute("microStore.Services.AuthApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("microStore.Services.AuthApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -46,13 +46,11 @@ namespace microStore.Services.InventoryApi.Migrations
                 columns: new[] { "InventoryId", "ProductId", "Quantity", "RetailPrice", "VendorId" },
                 values: new object[,]
                 {
-                    { 1, 20, 20, 100000m, 1 },
-                    { 2, 21, 453, 100000m, 2 },
-                    { 3, 22, 20, 100000m, 3 },
-                    { 4, 23, 45, 100000m, 4 },
-                    { 5, 24, 5, 100000m, 5 },
-                    { 6, 25, 3, 100000m, 6 },
-                    { 7, 26, 84, 100000m, 7 }
+                    { 1, 1, 20, 100000m, 1 },
+                    { 2, 2, 453, 100000m, 2 },
+                    { 3, 3, 20, 100000m, 3 },
+                    { 4, 4, 45, 100000m, 4 },
+
                 });
 
             migrationBuilder.InsertData(
@@ -64,9 +62,7 @@ namespace microStore.Services.InventoryApi.Migrations
                     { 2, "Vendor1" },
                     { 3, "Vendor2" },
                     { 4, "Vendor1" },
-                    { 5, "Vendor1" },
-                    { 6, "Vendor1" },
-                    { 7, "Vendor1" }
+
                 });
         }
 

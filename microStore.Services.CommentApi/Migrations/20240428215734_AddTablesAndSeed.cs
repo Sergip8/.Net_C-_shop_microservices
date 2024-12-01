@@ -19,7 +19,7 @@ namespace microStore.Services.CommentApi.Migrations
                 {
                     CommentHeaderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OverallScore = table.Column<int>(type: "int", nullable: false),
+                    OverallScore = table.Column<float>(type: "real", nullable: false),
                     QtyForStar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CommentCount = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -56,7 +56,7 @@ namespace microStore.Services.CommentApi.Migrations
             migrationBuilder.InsertData(
                 table: "CommentHeader",
                 columns: new[] { "CommentHeaderId", "CommentCount", "OverallScore", "ProductId", "QtyForStar" },
-                values: new object[] { 1, 7, 2, 20, "" });
+                values: new object[] { 1, 7, 2f, 3, "" });
 
             migrationBuilder.InsertData(
                 table: "Comments",

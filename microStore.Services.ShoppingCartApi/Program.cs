@@ -19,12 +19,10 @@ builder.Services.AddDbContext<AppDbContext>(optionsAction: options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-
-
-                          policy.WithOrigins("http://localhost:4200").WithMethods("PUT", "DELETE", "GET", "POST").AllowAnyHeader();
-                      });
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200").WithMethods("PUT", "DELETE", "GET", "POST").AllowAnyHeader();
+        });
 });
 //IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 //builder.Services.AddSingleton(mapper);
@@ -40,7 +38,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
 builder.AddAppAuthentication();
 builder.Services.AddAuthorization();
-builder.WebHost.UseUrls("https://localhost:8001;http://localhost:5038");
+builder.WebHost.UseUrls("http://0.0.0.0:8080");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,18 +54,18 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-ApplyMigration();
+//ApplyMigration();
 
 app.Run();
 
-void ApplyMigration()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        if (_db.Database.GetPendingMigrations().Count() > 0)
-        {
-            _db.Database.Migrate();
-        }
-    }
-}
+//void ApplyMigration()
+//{
+//    using (var scope = app.Services.CreateScope())
+//    {
+//        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//        if (_db.Database.GetPendingMigrations().Count() > 0)
+//        {
+//            _db.Database.Migrate();
+//        }
+//    }
+//}

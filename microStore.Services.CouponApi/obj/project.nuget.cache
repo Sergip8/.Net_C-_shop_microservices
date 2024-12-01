@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w86AaduQsGd/RAlVJ4DxlIuUt4TsdalzSzu9yCcV4ul3lg8woqCv4vrKVqGXFahO9jKuA1EV1McMNStgATonNQ==",
+  "dgSpecHash": "TWWsOqB4WO1JCcBsDSFbVdSoLvc/8KCBq6pIacKtJfYTrjTzyYC/ynLdixMdovaWdUFTukIK1o2XbNn2sUfUNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.CouponApi\\microStore.Services.CouponApi.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\sagp7\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "C:\\Users\\sagp7\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\sagp7\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\sagp7\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512",
     "C:\\Users\\sagp7\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\sagp7\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\sagp7\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

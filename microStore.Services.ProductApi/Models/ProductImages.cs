@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace microStore.Services.ProductApi.Models
 {
@@ -8,7 +9,9 @@ namespace microStore.Services.ProductApi.Models
         public int ImageId { get; set; }
         public string ImageLabel { get; set; }
         public string ImageUrl { get; set; }
-        public int ProductId { get; set; }
+
+        [JsonIgnore]
+        public IEnumerable<Product> Products { get; set; } = Enumerable.Empty<Product>();
 
 
     }

@@ -49,7 +49,7 @@ namespace microStore.Services.InventoryApi.Migrations
                         new
                         {
                             InventoryId = 1,
-                            ProductId = 20,
+                            ProductId = 1,
                             Quantity = 20,
                             RetailPrice = 100000m,
                             VendorId = 1
@@ -57,7 +57,7 @@ namespace microStore.Services.InventoryApi.Migrations
                         new
                         {
                             InventoryId = 2,
-                            ProductId = 21,
+                            ProductId = 2,
                             Quantity = 453,
                             RetailPrice = 100000m,
                             VendorId = 2
@@ -65,7 +65,7 @@ namespace microStore.Services.InventoryApi.Migrations
                         new
                         {
                             InventoryId = 3,
-                            ProductId = 22,
+                            ProductId = 3,
                             Quantity = 20,
                             RetailPrice = 100000m,
                             VendorId = 3
@@ -73,34 +73,10 @@ namespace microStore.Services.InventoryApi.Migrations
                         new
                         {
                             InventoryId = 4,
-                            ProductId = 23,
+                            ProductId = 4,
                             Quantity = 45,
                             RetailPrice = 100000m,
                             VendorId = 4
-                        },
-                        new
-                        {
-                            InventoryId = 5,
-                            ProductId = 24,
-                            Quantity = 5,
-                            RetailPrice = 100000m,
-                            VendorId = 5
-                        },
-                        new
-                        {
-                            InventoryId = 6,
-                            ProductId = 25,
-                            Quantity = 3,
-                            RetailPrice = 100000m,
-                            VendorId = 6
-                        },
-                        new
-                        {
-                            InventoryId = 7,
-                            ProductId = 26,
-                            Quantity = 84,
-                            RetailPrice = 100000m,
-                            VendorId = 7
                         });
                 });
 
@@ -139,21 +115,6 @@ namespace microStore.Services.InventoryApi.Migrations
                         new
                         {
                             VendorId = 4,
-                            VendorName = "Vendor1"
-                        },
-                        new
-                        {
-                            VendorId = 5,
-                            VendorName = "Vendor1"
-                        },
-                        new
-                        {
-                            VendorId = 6,
-                            VendorName = "Vendor1"
-                        },
-                        new
-                        {
-                            VendorId = 7,
                             VendorName = "Vendor1"
                         });
                 });

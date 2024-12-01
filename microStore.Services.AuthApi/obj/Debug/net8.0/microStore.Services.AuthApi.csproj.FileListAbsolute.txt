@@ -142,3 +142,4 @@ C:\Users\sagp7\source\repos\microStore\microStore.Services.AuthApi\obj\Debug\net
 C:\Users\sagp7\source\repos\microStore\microStore.Services.AuthApi\obj\Debug\net8.0\microStore.Services.AuthApi.pdb
 C:\Users\sagp7\source\repos\microStore\microStore.Services.AuthApi\obj\Debug\net8.0\microStore.Services.AuthApi.genruntimeconfig.cache
 C:\Users\sagp7\source\repos\microStore\microStore.Services.AuthApi\obj\Debug\net8.0\ref\microStore.Services.AuthApi.dll
+C:\Users\sagp7\source\repos\microStore\microStore.Services.AuthApi\obj\Debug\net8.0\microStore.Services.AuthApi.sourcelink.json

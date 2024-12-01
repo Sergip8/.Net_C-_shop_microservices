@@ -34,7 +34,7 @@ builder.Services.AddSwaggerGen();
 
 builder.AddAppAuthentication();
 builder.Services.AddAuthorization();
-builder.WebHost.UseUrls("https://localhost:8004;http://localhost:5138");
+builder.WebHost.UseUrls("http://0.0.0.0:8080");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

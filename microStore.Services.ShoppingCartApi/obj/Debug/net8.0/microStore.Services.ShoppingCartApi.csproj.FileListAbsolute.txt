@@ -137,3 +137,4 @@ C:\Users\sagp7\source\repos\microStore\microStore.Services.ShoppingCartApi\obj\D
 C:\Users\sagp7\source\repos\microStore\microStore.Services.ShoppingCartApi\obj\Debug\net8.0\microStore.Services.ShoppingCartApi.genruntimeconfig.cache
 C:\Users\sagp7\source\repos\microStore\microStore.Services.ShoppingCartApi\obj\Debug\net8.0\ref\microStore.Services.ShoppingCartApi.dll
 C:\Users\sagp7\source\repos\microStore\microStore.Services.ShoppingCartApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\sagp7\source\repos\microStore\microStore.Services.ShoppingCartApi\obj\Debug\net8.0\microStore.Services.ShoppingCartApi.sourcelink.json

@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{56769891-1590-4C13-8008-57F91FA6DD8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{67F4216A-D581-4BC0-9B58-34780FFDD419}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{53ABBFCA-CE79-4B39-97C3-7A1C31261E90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.CouponApi", "microStore.Services.CouponApi\microStore.Services.CouponApi.csproj", "{8DBC7A29-A5B9-4B4A-8A0C-547D217D2C14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.AuthApi", "microStore.Services.AuthApi\microStore.Services.AuthApi.csproj", "{56412EB5-4F39-4BED-B5FE-7AFD1565A384}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.ProductApi", "microStore.Services.ProductApi\microStore.Services.ProductApi.csproj", "{82F23A1A-22E3-4D84-953A-EF841ECEEF05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.ShoppingCartApi", "microStore.Services.ShoppingCartApi\microStore.Services.ShoppingCartApi.csproj", "{534FF5AC-B5EF-4594-8B29-27903BA4AD29}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.InventoryApi", "microStore.Services.InventoryApi\microStore.Services.InventoryApi.csproj", "{8DEA05C1-3732-40A9-89BA-F95E943E9879}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.Services.CommentApi", "microStore.Services.CommentApi\microStore.Services.CommentApi.csproj", "{9C1E4A83-EB03-4212-8D96-C91E010CC755}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{E45F62F2-DA78-4CD5-8334-20604620123F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "microStore.ApiGateway", "microStore.ApiGateway\microStore.ApiGateway.csproj", "{883D6B75-C6C3-4903-B57D-C0E3DBA65206}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DBC7A29-A5B9-4B4A-8A0C-547D217D2C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBC7A29-A5B9-4B4A-8A0C-547D217D2C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBC7A29-A5B9-4B4A-8A0C-547D217D2C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56412EB5-4F39-4BED-B5FE-7AFD1565A384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56412EB5-4F39-4BED-B5FE-7AFD1565A384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56412EB5-4F39-4BED-B5FE-7AFD1565A384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82F23A1A-22E3-4D84-953A-EF841ECEEF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F23A1A-22E3-4D84-953A-EF841ECEEF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F23A1A-22E3-4D84-953A-EF841ECEEF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F23A1A-22E3-4D84-953A-EF841ECEEF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{534FF5AC-B5EF-4594-8B29-27903BA4AD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{534FF5AC-B5EF-4594-8B29-27903BA4AD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{534FF5AC-B5EF-4594-8B29-27903BA4AD29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DEA05C1-3732-40A9-89BA-F95E943E9879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DEA05C1-3732-40A9-89BA-F95E943E9879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DEA05C1-3732-40A9-89BA-F95E943E9879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1E4A83-EB03-4212-8D96-C91E010CC755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1E4A83-EB03-4212-8D96-C91E010CC755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1E4A83-EB03-4212-8D96-C91E010CC755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883D6B75-C6C3-4903-B57D-C0E3DBA65206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883D6B75-C6C3-4903-B57D-C0E3DBA65206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883D6B75-C6C3-4903-B57D-C0E3DBA65206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883D6B75-C6C3-4903-B57D-C0E3DBA65206}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8DBC7A29-A5B9-4B4A-8A0C-547D217D2C14} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{56412EB5-4F39-4BED-B5FE-7AFD1565A384} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{82F23A1A-22E3-4D84-953A-EF841ECEEF05} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{534FF5AC-B5EF-4594-8B29-27903BA4AD29} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{8DEA05C1-3732-40A9-89BA-F95E943E9879} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{9C1E4A83-EB03-4212-8D96-C91E010CC755} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
+		{883D6B75-C6C3-4903-B57D-C0E3DBA65206} = {56769891-1590-4C13-8008-57F91FA6DD8D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {510D1D17-B139-4CEF-B1B1-C166CC3952EC}
+	EndGlobalSection
+EndGlobal

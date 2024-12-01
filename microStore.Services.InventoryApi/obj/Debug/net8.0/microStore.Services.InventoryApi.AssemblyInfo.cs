@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ec1d0fd5-6c75-40e4-bb5f-990fe33d60af")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("microStore.Services.InventoryApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdfc83abdeb7420dbbf1f7abbe317e720a7ded1a")]
 [assembly: System.Reflection.AssemblyProductAttribute("microStore.Services.InventoryApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("microStore.Services.InventoryApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -23,7 +23,9 @@ namespace microStore.Services.ProductApi.Service
             var response = JsonConvert.DeserializeObject<ResponseDTO>(apiContent);
             if (response != null)
             {
-                return JsonConvert.DeserializeObject<InventoryDTO>(Convert.ToString(response.Data));
+                var res1 = JsonConvert.DeserializeObject<InventoryDTO>(Convert.ToString(response.Data));
+                Console.WriteLine(res1);
+                return res1;
             }
             return new InventoryDTO();
         }
