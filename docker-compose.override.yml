@@ -9,11 +9,35 @@ services:
       - "5433:1433"
     volumes: 
       - fs_mssqldata:/var/opt/mssql
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes: 
+      - rabbitmq:/var/lib/rabbitmq
+  seq:
+    container_name: seq
+    environment:
+      ACCEPT_EULA: "Y"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 200mb
+        reservations:
+          memory: 200mb
+    ports:
+      - "8200:80"
+      - "5341:5341"
+    volumes: 
+      - seq_data:/data
   products:
     container_name: products
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Product;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Product;Persist Security Info=False;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
     ports:
       - "8003:8080"
   shoppingcart:
@@ -22,7 +46,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_ShoppingCart;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
     ports:
-      - "8001:8080"
+      - "8008:8080"
   inventory:
     container_name: inventory
     environment:
@@ -51,16 +75,29 @@ services:
       - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Auth;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
     ports:
       - "8002:8080"
+  order:
+    container_name: order
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Order;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+    ports:
+      - "8009:8080"
   gateway:
     container_name: gateway
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8000:8080"
+  gatewayadmin:
+    container_name: gatewayadmin
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8001:8080"
 volumes:
   fs_mssqldata:
     external: false
-  postgres_data:
-    external: false
+  rabbitmq:
+    driver: local
   seq_data:
     external: false

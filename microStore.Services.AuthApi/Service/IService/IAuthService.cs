@@ -7,5 +7,6 @@ namespace microStore.Services.AuthApi.Service.IService
         Task<ResponseDTO> Register(RegistrationRequestDTO registrationRequestDTO);
         Task<ResponseDTO> Login(LoginRequestDTO loginRequestDTO);
         Task<ResponseDTO> AssingRole(string Email, string roleName);
+        ResponseDTO getUsersByIds(List<string> ids);
     }
 }

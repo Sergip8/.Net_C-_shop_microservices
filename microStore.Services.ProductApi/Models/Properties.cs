@@ -1,20 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace microStore.Services.ProductApi.Models
 {
-    public class Property
+    public class Property : BaseEntity
     {
-        [Key]
-        public int PropertyId { get; set; }
+
         public bool IsPrincipal { get; set; }
         public string PropertyName { get; set; }
+
+        [ForeignKey("PropertyTypeId")]
         public int PropertyTypeId { get; set; }
+
+        public virtual PropertyType PropertyType { get; set; }
         public int PropertyOrder { get; set; }
 
         [JsonIgnore]
-        public IEnumerable<PropertyValue> PropertyValues { get; set; }
-
-
+        public virtual ICollection<PropertyValue> PropertyValues { get; set; }
     }
 }

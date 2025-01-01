@@ -1,0 +1,6 @@
+@microStore.Services.OrderApi_HostAddress = http://localhost:5147
+
+GET {{microStore.Services.OrderApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

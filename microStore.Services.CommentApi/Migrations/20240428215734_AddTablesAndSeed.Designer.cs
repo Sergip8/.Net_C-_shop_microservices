@@ -36,6 +36,9 @@ namespace microStore.Services.CommentApi.Migrations
                     b.Property<int>("CommentHeaderId")
                         .HasColumnType("int");
 
+ b.Property<string>("CommentUserId")
+    .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -60,76 +63,84 @@ namespace microStore.Services.CommentApi.Migrations
                     b.ToTable("Comments");
 
                     b.HasData(
+                        
                         new
-                        {
-                            CommentId = 1,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 2,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 3,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 4,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 5,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 6,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        },
-                        new
-                        {
-                            CommentId = 7,
-                            CommentHeaderId = 1,
-                            Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Score = 1,
-                            Title = "Comment",
-                            Votes = 0
-                        });
+   {
+       CommentId = 1,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(998),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 2,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1023),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 3,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1036),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 4,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1048),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 5,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1061),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 6,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1076),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   },
+   new
+   {
+       CommentId = 7,
+       CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
+       CommentHeaderId = 1,
+       Content = "Una mierda pinchada en un palo",
+       CreatedDate = new DateTime(2024, 12, 2, 11, 24, 8, 464, DateTimeKind.Local).AddTicks(1088),
+       Score = 1,
+       Title = "Comment",
+       Votes = 0
+   });
                 });
 
             modelBuilder.Entity("microStore.Services.CommentApi.Models.CommentHeader", b =>

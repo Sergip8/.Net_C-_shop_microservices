@@ -1,8 +1,12 @@
-﻿namespace microStore.Services.ProductApi.Models
+﻿using System.Text.Json.Serialization;
+
+namespace microStore.Services.ProductApi.Models
 {
-    public class Brand
+    public class Brand : BaseEntity
     {
-        public int BrandId { get; set; }
         public string BrandName { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }

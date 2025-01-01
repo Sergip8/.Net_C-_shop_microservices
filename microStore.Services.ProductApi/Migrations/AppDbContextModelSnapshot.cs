@@ -21,57 +21,191 @@ namespace microStore.Services.ProductApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ProductCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            CategoryId = 1,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            CategoryId = 1,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            CategoryId = 1,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            ProductId = 4
+                        });
+                });
+
+            modelBuilder.Entity("ProductPropertyValue", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PropertyValueId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "PropertyValueId");
+
+                    b.HasIndex("PropertyValueId");
+
+                    b.ToTable("ProductPropertyValue");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 23
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 21
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 19
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 15
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 14
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 12
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 8
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            PropertyValueId = 3
+                        });
+                });
+
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Brand", b =>
                 {
-                    b.Property<int>("BrandId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BrandName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrandId");
+                    b.HasKey("Id");
 
                     b.ToTable("Brands");
 
                     b.HasData(
                         new
                         {
-                            BrandId = 1,
+                            Id = 1,
                             BrandName = "Brand 1"
                         },
                         new
                         {
-                            BrandId = 2,
+                            Id = 2,
                             BrandName = "Brand 2"
                         },
                         new
                         {
-                            BrandId = 3,
+                            Id = 3,
                             BrandName = "Brand 3"
                         },
                         new
                         {
-                            BrandId = 4,
+                            Id = 4,
                             BrandName = "Brand 4"
                         },
                         new
                         {
-                            BrandId = 5,
+                            Id = 5,
                             BrandName = "Brand 5"
                         });
                 });
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryLevel")
                         .HasColumnType("int");
@@ -83,42 +217,42 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<int>("CategoryParentId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
+                            Id = 1,
                             CategoryLevel = 0,
                             CategoryName = "Cat 1",
                             CategoryParentId = 0
                         },
                         new
                         {
-                            CategoryId = 2,
+                            Id = 2,
                             CategoryLevel = 1,
                             CategoryName = "Cat 2",
                             CategoryParentId = 1
                         },
                         new
                         {
-                            CategoryId = 3,
+                            Id = 3,
                             CategoryLevel = 2,
                             CategoryName = "Cat 3",
                             CategoryParentId = 2
                         },
                         new
                         {
-                            CategoryId = 4,
+                            Id = 4,
                             CategoryLevel = 1,
                             CategoryName = "Cat 4",
                             CategoryParentId = 1
                         },
                         new
                         {
-                            CategoryId = 5,
+                            Id = 5,
                             CategoryLevel = 2,
                             CategoryName = "Cat 5",
                             CategoryParentId = 4
@@ -127,11 +261,11 @@ namespace microStore.Services.ProductApi.Migrations
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -142,6 +276,9 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Link")
                         .IsRequired()
@@ -154,47 +291,53 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<decimal>("Previous_price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            ProductId = 1,
+                            Id = 1,
                             BrandId = 1,
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                            IsAvailable = true,
                             Link = "samosa-1",
                             Name = "Samosa",
                             Previous_price = 3500000m
                         },
                         new
                         {
-                            ProductId = 2,
+                            Id = 2,
                             BrandId = 2,
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                            IsAvailable = true,
                             Link = "paneer-tikka-2",
                             Name = "Paneer Tikka",
                             Previous_price = 3500000m
                         },
                         new
                         {
-                            ProductId = 3,
+                            Id = 3,
                             BrandId = 3,
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                            IsAvailable = true,
                             Link = "sweet-pie-3",
                             Name = "Sweet Pie",
                             Previous_price = 3500000m
                         },
                         new
                         {
-                            ProductId = 4,
+                            Id = 4,
                             BrandId = 4,
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
+                            IsAvailable = true,
                             Link = "pav-bhaji-4",
                             Name = "Pav Bhaji",
                             Previous_price = 3500000m
@@ -203,11 +346,11 @@ namespace microStore.Services.ProductApi.Migrations
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductImages", b =>
                 {
-                    b.Property<int>("ImageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ImageLabel")
                         .IsRequired()
@@ -217,206 +360,88 @@ namespace microStore.Services.ProductApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ImageId");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
 
                     b.HasData(
                         new
                         {
-                            ImageId = 1,
+                            Id = 1,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 1
                         },
                         new
                         {
-                            ImageId = 7,
+                            Id = 9,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 1
                         },
                         new
                         {
-                            ImageId = 2,
+                            Id = 2,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 1
                         },
                         new
                         {
-                            ImageId = 3,
+                            Id = 3,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 2
                         },
                         new
                         {
-                            ImageId = 4,
+                            Id = 4,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 2
                         },
                         new
                         {
-                            ImageId = 5,
+                            Id = 5,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 3
                         },
                         new
                         {
-                            ImageId = 6,
+                            Id = 6,
                             ImageLabel = "image1",
-                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA"
-                        });
-                });
-
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductPropertyValue", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PropertyValueId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "PropertyValueId");
-
-                    b.HasIndex("PropertyValueId");
-
-                    b.ToTable("ProductPropertyValues");
-                });
-
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductsCategories", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("ProductsCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 2,
-                            CategoryId = 1
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 3
                         },
                         new
                         {
-                            ProductId = 2,
-                            CategoryId = 2
+                            Id = 7,
+                            ImageLabel = "image1",
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 4
                         },
                         new
                         {
-                            ProductId = 2,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 1,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 1,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 1,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            CategoryId = 3
-                        });
-                });
-
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductsImages", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "ImageId");
-
-                    b.HasIndex("ImageId");
-
-                    b.ToTable("ProductsImages");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 2,
-                            ImageId = 1
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            ImageId = 2
-                        },
-                        new
-                        {
-                            ProductId = 1,
-                            ImageId = 3
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            ImageId = 4
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            ImageId = 5
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            ImageId = 6
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            ImageId = 7
+                            Id = 8,
+                            ImageLabel = "image1",
+                            ImageUrl = "https://www.alkosto.com/medias/8806091857859-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wzODUwNnxpbWFnZS93ZWJwfGFEQXdMMmcwWWk4eE5EYzBOVFF6TXpNME1UazRNaTg0T0RBMk1Ea3hPRFUzT0RVNVh6QXdNVjgzTlRCWGVEYzFNRWd8NTU0MDIwYmI1YTZkZjc0MmIyYWU0YmZjMzIyNjM0N2VmZWRjNDMxYTJlYThlNWQyMmExMWI4OTFkOWY4ZTY0OA",
+                            ProductId = 4
                         });
                 });
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Property", b =>
                 {
-                    b.Property<int>("PropertyId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PropertyId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("IsPrincipal")
                         .HasColumnType("bit");
@@ -431,7 +456,7 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<int>("PropertyTypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("PropertyId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PropertyTypeId");
 
@@ -440,7 +465,7 @@ namespace microStore.Services.ProductApi.Migrations
                     b.HasData(
                         new
                         {
-                            PropertyId = 1,
+                            Id = 1,
                             IsPrincipal = false,
                             PropertyName = "Memoria Interna",
                             PropertyOrder = 1,
@@ -448,7 +473,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 2,
+                            Id = 2,
                             IsPrincipal = false,
                             PropertyName = "Memoria RAM",
                             PropertyOrder = 2,
@@ -456,7 +481,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 3,
+                            Id = 3,
                             IsPrincipal = false,
                             PropertyName = "Modelo del Procesador",
                             PropertyOrder = 2,
@@ -464,7 +489,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 4,
+                            Id = 4,
                             IsPrincipal = false,
                             PropertyName = "Frecuencia",
                             PropertyOrder = 2,
@@ -472,7 +497,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 5,
+                            Id = 5,
                             IsPrincipal = false,
                             PropertyName = "Tipo de pantalla",
                             PropertyOrder = 3,
@@ -480,7 +505,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 6,
+                            Id = 6,
                             IsPrincipal = false,
                             PropertyName = "Resolucion",
                             PropertyOrder = 4,
@@ -488,7 +513,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 7,
+                            Id = 7,
                             IsPrincipal = false,
                             PropertyName = "Tamaño bateria",
                             PropertyOrder = 3,
@@ -496,7 +521,7 @@ namespace microStore.Services.ProductApi.Migrations
                         },
                         new
                         {
-                            PropertyId = 8,
+                            Id = 8,
                             IsPrincipal = false,
                             PropertyName = "Bateria",
                             PropertyOrder = 4,
@@ -506,11 +531,11 @@ namespace microStore.Services.ProductApi.Migrations
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.PropertyType", b =>
                 {
-                    b.Property<int>("PropertyTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PropertyTypeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("PropertyTypeDescription")
                         .IsRequired()
@@ -523,28 +548,28 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<int>("PropertyTypeOrder")
                         .HasColumnType("int");
 
-                    b.HasKey("PropertyTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("PropertyTypes");
 
                     b.HasData(
                         new
                         {
-                            PropertyTypeId = 1,
+                            Id = 1,
                             PropertyTypeDescription = "Caracteristicas mas destacables de los productos",
                             PropertyTypeName = "Caracteristicas Principales",
                             PropertyTypeOrder = 1
                         },
                         new
                         {
-                            PropertyTypeId = 2,
+                            Id = 2,
                             PropertyTypeDescription = "Funciones principales de los productos",
                             PropertyTypeName = "Funciones",
                             PropertyTypeOrder = 2
                         },
                         new
                         {
-                            PropertyTypeId = 3,
+                            Id = 3,
                             PropertyTypeDescription = "Componentes que componen el producto",
                             PropertyTypeName = "Componentes",
                             PropertyTypeOrder = 3
@@ -553,11 +578,11 @@ namespace microStore.Services.ProductApi.Migrations
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.PropertyValue", b =>
                 {
-                    b.Property<int>("PropertyValueId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PropertyValueId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("PropertyId")
                         .HasColumnType("int");
@@ -566,7 +591,7 @@ namespace microStore.Services.ProductApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PropertyValueId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PropertyId");
 
@@ -575,158 +600,139 @@ namespace microStore.Services.ProductApi.Migrations
                     b.HasData(
                         new
                         {
-                            PropertyValueId = 1,
+                            Id = 1,
                             PropertyId = 1,
                             PropertyValueName = "512GB"
                         },
                         new
                         {
-                            PropertyValueId = 2,
+                            Id = 2,
                             PropertyId = 1,
                             PropertyValueName = "256GB"
                         },
                         new
                         {
-                            PropertyValueId = 3,
+                            Id = 3,
                             PropertyId = 1,
                             PropertyValueName = "128GB"
                         },
                         new
                         {
-                            PropertyValueId = 4,
+                            Id = 4,
                             PropertyId = 1,
                             PropertyValueName = "64GB"
                         },
                         new
                         {
-                            PropertyValueId = 5,
+                            Id = 5,
                             PropertyId = 1,
                             PropertyValueName = "1000GB"
                         },
                         new
                         {
-                            PropertyValueId = 6,
+                            Id = 6,
                             PropertyId = 2,
                             PropertyValueName = "8GB"
                         },
                         new
                         {
-                            PropertyValueId = 7,
+                            Id = 7,
                             PropertyId = 2,
                             PropertyValueName = "4GB"
                         },
                         new
                         {
-                            PropertyValueId = 8,
+                            Id = 8,
                             PropertyId = 2,
                             PropertyValueName = "6GB"
                         },
                         new
                         {
-                            PropertyValueId = 9,
+                            Id = 9,
                             PropertyId = 2,
                             PropertyValueName = "12GB"
                         },
                         new
                         {
-                            PropertyValueId = 10,
+                            Id = 10,
                             PropertyId = 2,
                             PropertyValueName = "16GB"
                         },
                         new
                         {
-                            PropertyValueId = 11,
+                            Id = 11,
                             PropertyId = 3,
                             PropertyValueName = "Mediatek"
                         },
                         new
                         {
-                            PropertyValueId = 12,
+                            Id = 12,
                             PropertyId = 3,
                             PropertyValueName = "Qualcomm"
                         },
                         new
                         {
-                            PropertyValueId = 13,
+                            Id = 13,
                             PropertyId = 4,
                             PropertyValueName = "3.3 GHz"
                         },
                         new
                         {
-                            PropertyValueId = 14,
+                            Id = 14,
                             PropertyId = 4,
                             PropertyValueName = "2.8 GHz"
                         },
                         new
                         {
-                            PropertyValueId = 15,
+                            Id = 15,
                             PropertyId = 5,
                             PropertyValueName = "AMOLED"
                         },
                         new
                         {
-                            PropertyValueId = 16,
+                            Id = 16,
                             PropertyId = 5,
                             PropertyValueName = "LED"
                         },
                         new
                         {
-                            PropertyValueId = 18,
+                            Id = 18,
                             PropertyId = 6,
                             PropertyValueName = "1080 x 2400 px • FHD+"
                         },
                         new
                         {
-                            PropertyValueId = 19,
+                            Id = 19,
                             PropertyId = 6,
                             PropertyValueName = "1440 x 3168 px • WQHD+"
                         },
                         new
                         {
-                            PropertyValueId = 20,
+                            Id = 20,
                             PropertyId = 7,
                             PropertyValueName = "6.55\""
                         },
                         new
                         {
-                            PropertyValueId = 21,
+                            Id = 21,
                             PropertyId = 7,
                             PropertyValueName = "6.82\""
                         },
                         new
                         {
-                            PropertyValueId = 22,
+                            Id = 22,
                             PropertyId = 8,
                             PropertyValueName = "5000 mAh"
                         },
                         new
                         {
-                            PropertyValueId = 23,
+                            Id = 23,
                             PropertyId = 8,
                             PropertyValueName = "4000 mAh"
                         });
                 });
 
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductPropertyValue", b =>
-                {
-                    b.HasOne("microStore.Services.ProductApi.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("microStore.Services.ProductApi.Models.PropertyValue", "PropertyValue")
-                        .WithMany()
-                        .HasForeignKey("PropertyValueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("PropertyValue");
-                });
-
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductsCategories", b =>
+            modelBuilder.Entity("ProductCategory", b =>
                 {
                     b.HasOne("microStore.Services.ProductApi.Models.Category", null)
                         .WithMany()
@@ -741,28 +747,52 @@ namespace microStore.Services.ProductApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductsImages", b =>
+            modelBuilder.Entity("ProductPropertyValue", b =>
                 {
-                    b.HasOne("microStore.Services.ProductApi.Models.ProductImages", null)
-                        .WithMany()
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("microStore.Services.ProductApi.Models.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("microStore.Services.ProductApi.Models.PropertyValue", null)
+                        .WithMany()
+                        .HasForeignKey("PropertyValueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("microStore.Services.ProductApi.Models.Product", b =>
+                {
+                    b.HasOne("microStore.Services.ProductApi.Models.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("microStore.Services.ProductApi.Models.ProductImages", b =>
+                {
+                    b.HasOne("microStore.Services.ProductApi.Models.Product", "Products")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Property", b =>
                 {
-                    b.HasOne("microStore.Services.ProductApi.Models.PropertyType", null)
+                    b.HasOne("microStore.Services.ProductApi.Models.PropertyType", "PropertyType")
                         .WithMany("Properties")
                         .HasForeignKey("PropertyTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PropertyType");
                 });
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.PropertyValue", b =>
@@ -774,6 +804,16 @@ namespace microStore.Services.ProductApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Property");
+                });
+
+            modelBuilder.Entity("microStore.Services.ProductApi.Models.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("microStore.Services.ProductApi.Models.Product", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("microStore.Services.ProductApi.Models.Property", b =>

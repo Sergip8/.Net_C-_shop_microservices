@@ -4,6 +4,12 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest    
     networks:
       - backend
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - backend
+  seq:
+    image: datalust/seq:latest
   products:
     build:
       context: .
@@ -18,6 +24,7 @@ services:
       dockerfile: microStore.Services.InventoryApi/Dockerfile
     depends_on:
       - mssqldata
+      - rabbitmq
     networks:
       - backend
   auth:
@@ -52,10 +59,30 @@ services:
       - mssqldata
     networks:
       - backend
+  order:
+    build:
+      context: .
+      dockerfile: microStore.Services.OrderApi/Dockerfile
+    depends_on:
+      - mssqldata
+    networks:
+      - backend
   gateway:
     build:
       context: .
       dockerfile: microStore.ApiGateway/Dockerfile
+    depends_on:
+      - products
+      - shoppingcart
+      - coupon 
+      - comments 
+      - inventory  
+    networks:
+      - backend
+  gatewayadmin:
+    build:
+      context: .
+      dockerfile: ApiAdminGateway/Dockerfile
     depends_on:
       - products
       - shoppingcart

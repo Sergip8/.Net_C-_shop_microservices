@@ -12,6 +12,9 @@ WORKDIR /src
 COPY ["microStore.Services.ProductApi/microStore.Services.ProductApi.csproj", "microStore.Services.ProductApi/"]
 RUN dotnet restore "./microStore.Services.ProductApi/microStore.Services.ProductApi.csproj"
 COPY . .
+#RUN dotnet tool install --global dotnet-ef --version 8.0.3
+#RUN /root/.dotnet/tools/dotnet-ef migrations add AddInitialMigrate1 --project microStore.Services.ProductApi/microStore.Services.ProductApi.csproj -v
+#RUN /root/.dotnet/tools/dotnet-ef database update --project microStore.Services.ProductApi/microStore.Services.ProductApi.csproj
 WORKDIR "/src/microStore.Services.ProductApi"
 RUN dotnet build "./microStore.Services.ProductApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

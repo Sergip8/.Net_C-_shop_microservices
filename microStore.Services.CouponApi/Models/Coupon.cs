@@ -16,6 +16,7 @@ namespace microStore.Services.CouponApi.Models
         public DateTime ExpirationDate { get; set; }
         [Required]
         public int ActivationCount { get; set; }
+        public int MaxActivations { get; set; }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace microStore.Services.CommentApi.Models.DTO
+﻿using EventBusMessages.Events.Contracts;
+
+namespace microStore.Services.CommentApi.Models.DTO
 {
     public class CommentDTO
     {
@@ -9,6 +11,16 @@
         public int Score { get; set; }
         public int Votes { get; set; }
         public int CommentHeaderId { get; set; }
+        public GetUserDetailsResponse UserDetails { get; set; }
+
 
     }
+    public class UserDetails
+    {
+        public string UserId { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+    }
+
+
 }

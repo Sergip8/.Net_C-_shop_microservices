@@ -29,6 +29,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -37,6 +38,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -45,6 +47,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -53,6 +56,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -61,6 +65,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -69,6 +74,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             }); modelBuilder.Entity<Comment>().HasData(new Comment
             {
@@ -77,6 +83,7 @@ namespace microStore.Services.CommentApi.Data
                 Content = "Una mierda pinchada en un palo",
                 Score = 1,
                 Votes = 0,
+                CommentUserId = "d3733ffc-aafe-448f-bdb5-10b18c941a15",
                 CommentHeaderId = 1
             });
         }

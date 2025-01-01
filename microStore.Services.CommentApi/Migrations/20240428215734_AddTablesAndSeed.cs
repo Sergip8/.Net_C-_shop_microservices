@@ -40,7 +40,8 @@ namespace microStore.Services.CommentApi.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Score = table.Column<int>(type: "int", nullable: false),
                     Votes = table.Column<int>(type: "int", nullable: false),
-                    CommentHeaderId = table.Column<int>(type: "int", nullable: false)
+                    CommentHeaderId = table.Column<int>(type: "int", nullable: false),
+                    CommentUserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,16 +61,16 @@ namespace microStore.Services.CommentApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Comments",
-                columns: new[] { "CommentId", "CommentHeaderId", "Content", "CreatedDate", "Score", "Title", "Votes" },
+                columns: new[] { "CommentId", "CommentHeaderId", "Content", "CreatedDate", "Score", "Title", "Votes", "CommentUserId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 2, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 3, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 4, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 5, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 6, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 },
-                    { 7, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 }
+                    { 1, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0, "d3733ffc-aafe-448f-bdb5-10b18c941a15" },
+                    { 2, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0, "d3733ffc-aafe-448f-bdb5-10b18c941a15" },
+                    { 3, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 , "d3733ffc-aafe-448f-bdb5-10b18c941a15"},
+                    { 4, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0, "d3733ffc-aafe-448f-bdb5-10b18c941a15" },
+                    { 5, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0 , "d3733ffc-aafe-448f-bdb5-10b18c941a15"},
+                    { 6, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0, "d3733ffc-aafe-448f-bdb5-10b18c941a15"},
+                    { 7, 1, "Una mierda pinchada en un palo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Comment", 0, "d3733ffc-aafe-448f-bdb5-10b18c941a15" }
                 });
 
             migrationBuilder.CreateIndex(

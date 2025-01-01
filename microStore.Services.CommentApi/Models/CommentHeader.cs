@@ -11,7 +11,7 @@ namespace microStore.Services.CommentApi.Models
         public int ProductId { get; set; }
         [NotMapped]
         public int[]? ScoreList { get; set; } = new int[5];
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
 
     }
 }

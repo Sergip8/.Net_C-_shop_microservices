@@ -32,9 +32,9 @@ namespace microStore.Services.AuthApi.Controllers
         {
             var res = await _authService.Login(loginRequest);
 
-          
-                return Ok(res);
-       
+
+            return Ok(res);
+
         }
 
         [HttpPost("role")]
@@ -51,7 +51,25 @@ namespace microStore.Services.AuthApi.Controllers
                 return BadRequest(res);
             }
         }
+        [HttpPost("ids")]
+        public IActionResult GetByIds([FromBody] Ids ids)
+        {
+            var res = _authService.getUsersByIds(ids.UserIds);
 
+            if (res.Success)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return BadRequest(res);
+            }
+        }
+
+    }
+    public class Ids
+    {
+        public List<string> UserIds { get; set; }
     }
 
 }

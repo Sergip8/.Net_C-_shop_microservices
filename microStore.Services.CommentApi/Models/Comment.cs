@@ -8,6 +8,7 @@
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public int Score { get; set; }
         public int Votes { get; set; }
+        public string CommentUserId { get; set; }
         public int CommentHeaderId { get; set; }
     }
 }

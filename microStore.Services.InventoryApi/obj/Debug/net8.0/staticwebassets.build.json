@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "Nr8shAyo+Vver7Isp2d++2zdzudaSf7Ih7Uqlp7lV+w=",
+  "Hash": "c3qfDsrSBFKSrZq26Jx3gls49DGJjB0D+zGenykewg0=",
   "Source": "microStore.Services.InventoryApi",
   "BasePath": "_content/microStore.Services.InventoryApi",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj",
+      "Version": 2,
+      "Source": "EventBusMessages",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }

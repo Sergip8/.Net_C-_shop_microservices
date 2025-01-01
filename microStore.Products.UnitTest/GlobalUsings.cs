@@ -1,0 +1,10 @@
+﻿global using microStore.Services.ProductApi.Service;
+global using microStore.Services.ProductApi.Controllers;
+global using microStore.Services.ProductApi.Models.DTO;
+global using microStore.Services.ProductApi.Models;
+global using microStore.Services.ProductApi.Helpers;
+global using Xunit;
+global using FluentAssertions;
+global using NSubstitute;
+global using NSubstitute.ReturnsExtensions;
+global using AutoFixture;

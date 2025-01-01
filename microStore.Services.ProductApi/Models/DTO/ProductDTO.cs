@@ -41,6 +41,7 @@ namespace microStore.Services.ProductApi.Models.DTO
     }
     public class ImageProductDTO
     {
+        public int ImageId { get; set; }
         public string ImageLabel { get; set; }
         public string ImageUrl { get; set; }
     }

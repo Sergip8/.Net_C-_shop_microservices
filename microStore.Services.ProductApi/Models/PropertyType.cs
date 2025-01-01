@@ -3,14 +3,15 @@ using System.Text.Json.Serialization;
 
 namespace microStore.Services.ProductApi.Models
 {
-    public class PropertyType
+    public class PropertyType : BaseEntity
     {
-        [Key]
-        public int PropertyTypeId { get; set; }
+
+
         public string PropertyTypeName { get; set; }
         public string PropertyTypeDescription { get; set; }
         public int PropertyTypeOrder { get; set; }
 
+        [JsonIgnore]
         public IEnumerable<Property> Properties { get; set; }
 
     }

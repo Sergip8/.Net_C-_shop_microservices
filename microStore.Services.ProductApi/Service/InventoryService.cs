@@ -6,11 +6,11 @@ using Newtonsoft.Json;
 
 namespace microStore.Services.ProductApi.Service
 {
-    public class InventoryService : IInventoryService
+    public class InventoryServices : IInventoryService
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public InventoryService(IHttpClientFactory httpClientFactory)
+        public InventoryServices(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

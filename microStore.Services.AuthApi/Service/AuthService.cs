@@ -132,5 +132,22 @@ namespace microStore.Services.AuthApi.Service
             }
             return _responseDTO;
         }
+        public ResponseDTO getUsersByIds(List<string> ids)
+        {
+            var user = _db.Users.Where(p => ids.Contains(p.Id)).ToList();
+            if (user != null)
+            {
+                _responseDTO.Success = true;
+                _responseDTO.Data = user;
+                _responseDTO.Message = "Rol Asignado al usuario";
+            }
+            else
+            {
+                _responseDTO.Success = false;
+                _responseDTO.Data = null;
+                _responseDTO.Message = "Un error ha ocurrido";
+            }
+            return _responseDTO;
+        }
     }
 }

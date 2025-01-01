@@ -29,7 +29,7 @@ namespace microStore.Services.ProductApi.Controllers
         {
             try
             {
-                Category category = _db.Categories.First(c => c.CategoryId == id);
+                Category category = _db.Categories.First(c => c.Id == id);
                 _response.Data = _mapper.Map<CategoryDTO>(category);
 
             }
@@ -91,8 +91,8 @@ namespace microStore.Services.ProductApi.Controllers
                 Category category = _mapper.Map<Category>(categoryDTO);
                 if (categoryDTO.ProductIds.Count() > 0)
                 {
-                    IEnumerable<Product> products = _db.Products
-                                          .Where(p => categoryDTO.ProductIds.Contains(p.ProductId))
+                    ICollection<Product> products = _db.Products
+                                          .Where(p => categoryDTO.ProductIds.Contains(p.Id))
                                           .ToList();
 
                     category.Products = products;

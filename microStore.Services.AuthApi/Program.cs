@@ -1,14 +1,19 @@
+using EventBusMessages.Events;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using microStore.Services.AuthApi.Data;
+using microStore.Services.AuthApi.EventBusConsumer;
 using microStore.Services.AuthApi.Models;
 using microStore.Services.AuthApi.Service;
 using microStore.Services.AuthApi.Service.IService;
+using microStore.Services.CommentApi.EventBusConsumer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(optionsAction: options =>
 {
@@ -22,8 +27,6 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-
-
                           policy.WithOrigins("http://localhost:4200").WithMethods("PUT", "DELETE", "GET", "POST").AllowAnyHeader();
                       });
 });
@@ -35,6 +38,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<CommentUserConsumer>();
+    x.AddConsumer<ValidateUserConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(configuration["EventBusSettings:HostAddress"]);
+        cfg.ConfigureEndpoints(context);
+    });
+});
+builder.Services.AddScoped<CommentUserConsumer>();
+//builder.Services.AddMassTransitHostedService();
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
 var app = builder.Build();
 

@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using microStore.Services.CommentApi.Data;
 using microStore.Services.CommentApi.Models;
 using microStore.Services.CommentApi.Models.DTO;
+using microStore.Services.CommentApi.Service;
+using microStore.Services.CommentApi.Service.IService;
 using System.Xml.Linq;
 
 namespace microStore.Services.CommentApi.Controllers
@@ -15,89 +17,52 @@ namespace microStore.Services.CommentApi.Controllers
     public class CommentController : ControllerBase
     {
         private readonly AppDbContext _db;
-        private ResponseDTO _response;
-        private readonly IMapper _mapper;
+        private readonly ILogger<CommentController> _logger;
 
-        public CommentController(AppDbContext db, IMapper mapper)
+        private readonly ICommentService _commentService;
+
+        public CommentController(AppDbContext db, ICommentService commentService, ILogger<CommentController> logger)
         {
+            _commentService = commentService;
+            _logger = logger;
             _db = db;
-            _response = new ResponseDTO();
-            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("{productId:int}/{page:int}/{size:int}")]
-        public object GetCommentsByProductId(int productId, int page, int size)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCommentsByProductId(int productId, int page, int size)
         {
-            //.Skip((page - 1) * size).Take(size)
-            try
+            var res = await _commentService.GetCommentsByProductId(productId, page, size);
+
+            if (res.Data == null)
             {
-                var comments = _db.CommentHeader.Where(x => x.ProductId == productId)
-                    .Include(c => c.Comments).First();
-                int[] scoreSums = new int[5];
-
-                foreach (var comment in comments.Comments)
-                {
-
-                    int score = comment.Score;
-                    if (score >= 1 && score <= 5)
-                    {
-
-                        scoreSums[score - 1] += 1;
-                    }
-                }
-                comments.ScoreList = scoreSums;
-
-                if (comments != null)
-                {
-                    comments.Comments = comments.Comments.Skip((page - 1) * size).Take(size);
-                    _response.Data = _mapper.Map<CommentHeader>(comments);
-
-                }
-
+                _logger.LogWarning("Error al ver el comentario");
+                return Ok(new CommentHeader());
             }
-            catch (Exception e)
+            else
             {
-
-                _response.Success = false;
-                _response.Message = e.Message;
+                return Ok(res);
             }
-            return _response;
-
         }
 
         [HttpPost]
-        public async Task<object> Post([FromBody] CommentHeaderDTO commentDTO)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> StoreComment([FromBody] CommentHeaderDTO commentDTO)
         {
-            try
+            var res = await _commentService.StoreComment(commentDTO);
+
+            if (res.Data == null)
             {
-                CommentHeader commentHeader = _mapper.Map<CommentHeader>(commentDTO);
-                var fssgd = commentHeader;
-                if (commentDTO.CommentHeaderId == 0)
-                {
-
-                    _db.CommentHeader.Add(commentHeader);
-                    await _db.SaveChangesAsync();
-
-                }
-                else
-                {
-                    _db.CommentHeader.Update(commentHeader);
-                    await _db.SaveChangesAsync();
-
-                }
-                commentDTO.Comments.First().CommentHeaderId = commentHeader.CommentHeaderId;
-                //var cartdetails = _mapper.Map<CartDetails>(cartDTO.CartDetails.First());
-                _db.Comments.Add(commentHeader.Comments.First());
-                await _db.SaveChangesAsync();
-                _response.Data = commentHeader;
+                _logger.LogWarning("Error al crear el comentario");
+                return NotFound(res);
             }
-            catch (Exception ex)
+            else
             {
-                _response.Success = false;
-                _response.Message = ex.Message;
+                return Ok(res);
             }
-            return _response;
         }
         [HttpGet]
         [Route("page/{commentHeaderId:int}/{page:int}/{size:int}")]

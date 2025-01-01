@@ -62,7 +62,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 1,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5579),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9316),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -72,7 +72,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 2,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5602),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9368),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -82,7 +82,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 3,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5615),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9381),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -92,7 +92,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 4,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5628),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9394),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -102,7 +102,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 5,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5640),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9407),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -112,7 +112,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 6,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5673),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9422),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0
@@ -122,7 +122,7 @@ namespace microStore.Services.CommentApi.Migrations
                             CommentId = 7,
                             CommentHeaderId = 1,
                             Content = "Una mierda pinchada en un palo",
-                            CreatedDate = new DateTime(2024, 12, 1, 14, 5, 29, 360, DateTimeKind.Local).AddTicks(5686),
+                            CreatedDate = new DateTime(2024, 12, 7, 10, 51, 15, 649, DateTimeKind.Local).AddTicks(9434),
                             Score = 1,
                             Title = "Comment",
                             Votes = 0

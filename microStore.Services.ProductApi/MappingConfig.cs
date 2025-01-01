@@ -11,12 +11,20 @@ namespace microStore.Services.ProductApi
         {
             CreateMap<ProductDTO, Product>();
             CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDetailsDTOSpe>();
+            CreateMap<ProductImages, ImageProductDTO>();
+            CreateMap<PropertyValue, PropertyValuesDTO>();
+            CreateMap<Property, PropertiesDTO>();
+            CreateMap<PropertyType, PropertyTypeDTO>();
+
+
+
             CreateMap<Product, ProductResponseDTO>()
             .ForMember(dest => dest.Brand, act => act.Ignore())
             .ForMember(dest => dest.CategoryProduct, opt => opt.MapFrom(src => src.Categories
                 .Select(category => new CategoryProductDTO
                 {
-                    CategoryId = category.CategoryId,
+                    CategoryId = category.Id,
                     CategoryName = category.CategoryName
                 })));
             CreateMap<Brand, BrandDTO>().ReverseMap();
