@@ -1,6 +1,7 @@
 using HealthChecks.UI.Client;
 using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using microStore.Services.InventoryApi.Data;
@@ -40,14 +41,15 @@ builder.Services.AddMassTransit(x =>
         cfg.ConfigureEndpoints(context);
     });
 });
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.WebHost.UseUrls("http://0.0.0.0:8080");
+//builder.WebHost.UseUrls("http://0.0.0.0:8080");
 builder.Services.AddGrpc();
-var app = builder.Build();
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -59,8 +61,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.MapGrpcService<InventoryServices>();
-app.MapGet("/", () => "Use a gRPC client to communicate.");
+//app.MapGet("/", () => "Use a gRPC client to communicate.");
 app.MapControllers();
+
 
 //ApplyMigration();
 app.MapHealthChecks("/liveness", new HealthCheckOptions
@@ -75,14 +78,14 @@ app.UseHealthChecks("/hc", new HealthCheckOptions()
 });
 app.Run();
 
-//void ApplyMigration()
-//{
-//    using (var scope = app.Services.CreateScope())
-//    {
-//        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-//        if (_db.Database.GetPendingMigrations().Count() > 0)
-//        {
-//            _db.Database.Migrate();
-//        }
-//    }
-//}
+/*void ApplyMigration()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        if (_db.Database.GetPendingMigrations().Count() > 0)
+      {
+            _db.Database.Migrate();
+        }
+    }
+}*/

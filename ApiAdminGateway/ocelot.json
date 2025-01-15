@@ -16,7 +16,7 @@
       "UpstreamHttpMethod": [ "Get", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/ProductApi/{page}/{size}",
+      "DownstreamPathTemplate": "/api/ProductApi/link/{link}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -24,8 +24,20 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/ProductApi/{page}/{size}",
+      "UpstreamPathTemplate": "/api/ProductApi/link/{link}",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProductApi/getAllPaginatedProducts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ProductApi/getAllPaginatedProducts",
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/ProductApi",
@@ -64,6 +76,18 @@
         }
       ],
       "UpstreamPathTemplate": "/api/Category",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Category/name/{name}/{catLevel}/{parentId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Category/name/{name}/{catLevel}/{parentId}",
       "UpstreamHttpMethod": [ "Get" ]
     },
 
@@ -317,6 +341,44 @@
       "UpstreamPathTemplate": "/api/Properties/{page}/{size}",
       "UpstreamHttpMethod": [ "Get" ]
 
+    },{
+      "DownstreamPathTemplate": "/api/Properties/propertiesResults/{query}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Properties/propertiesResults/{query}",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vendor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Vendor",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/Inventory/{productId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Inventory/{productId}",
+      "UpstreamHttpMethod": [ "Get" ]
+
     }
   ],
   "GlobalConfiguration": {
@@ -333,4 +395,5 @@
       "Ocelot": "Debug"
     }
   }
+  
 }

@@ -109,28 +109,23 @@ namespace microStore.Services.CommentApi.Service
             return _response;
         }
 
-        public async Task<ResponseDTO> StoreComment(CommentHeaderDTO commentDTO)
+        public async Task<ResponseDTO> StoreComment(CommentHeaderWriteDTO commentDTO)
         {
             try
             {
                 CommentHeader commentHeader = _mapper.Map<CommentHeader>(commentDTO);
-                var fssgd = commentHeader;
                 if (commentDTO.CommentHeaderId == 0)
                 {
-
                     _db.CommentHeader.Add(commentHeader);
-                    await _db.SaveChangesAsync();
-
                 }
                 else
                 {
                     _db.CommentHeader.Update(commentHeader);
-                    await _db.SaveChangesAsync();
-
                 }
-                commentDTO.Comments.First().CommentHeaderId = commentHeader.CommentHeaderId;
+                //await _db.SaveChangesAsync();
+                //commentDTO.Comments.First().CommentHeaderId = commentHeader.CommentHeaderId;
                 //var cartdetails = _mapper.Map<CartDetails>(cartDTO.CartDetails.First());
-                _db.Comments.Add(commentHeader.Comments.First());
+                //_db.Comments.Add(commentHeader.Comments.First());
                 await _db.SaveChangesAsync();
                 _response.Data = commentHeader;
             }

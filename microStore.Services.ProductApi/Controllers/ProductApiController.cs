@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
+using Google.Protobuf.Collections;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using microStore.Services.ProductApi.Models.DTO;
-using microStore.Services.ProductApi.Data;
 using microStore.Services.ProductApi.Models;
 using microStore.Services.ProductApi.Service.IService;
 using InventoryServiceClient;
-using MassTransit;
 using microStore.Services.ProductApi.Contracts;
 using microStore.Services.ProductApi.Specificatios;
 
@@ -20,7 +17,6 @@ namespace microStore.Services.ProductApi.Controllers
     //[Authorize(Roles = "ADMIN")]
     public class ProductApiController : ControllerBase
     {
-
         private readonly ILogger<ProductApiController> _logger;
         private IProductService _productService;
         private IProductRepository _productRepository;
@@ -33,23 +29,35 @@ namespace microStore.Services.ProductApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        [Route("{page:int}/{size:int}")]
+        [HttpPost]
+        [Route("getAllPaginatedProducts")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get(int page, int size)
+        public async Task<IActionResult> Get([FromQuery] ProductSpecificationParams productParams)
         {
-            var res = await _productService.GetPageableProducts(page, size);
+            var spec = new ProductFilterSpecification(productParams);
+            var products = await _productRepository.ListWithSpecificationAsync(spec);
+            var productsIds = products.Select(x => x.Id).ToList();
+            var productIdsRepeated = new RepeatedField<int>();
+            productIdsRepeated.AddRange(productsIds);
+            var inventory = await _productRepository.GetProductInventoryList(productIdsRepeated);
+            var countSpec = new ProductFilterForCount(productParams);
+            var totalItems = await _productRepository.CountAsync(countSpec);
+            var res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDetailsDTOSpe>>(products);
+            foreach (var product in res)
+            {
+                product.Inventory = inventory.ProductAvailabilityWithIdList.FirstOrDefault(i => i.ProductId == product.Id);
+            }
+            var response = new ResponseDTO()
+            {
+                Data = res,
+                Count = totalItems,
+                Message = "Success",
+            };
+            if (res != null) return Ok(response);
+            response.Message = "No Products Found";
+            return NotFound(response);
 
-            if (res.Data == null)
-            {
-                _logger.LogWarning("No products found");
-                return NotFound(res);
-            }
-            else
-            {
-                return Ok(res);
-            }
         }
         [HttpGet]
         [Route("filterTest")]
@@ -75,7 +83,7 @@ namespace microStore.Services.ProductApi.Controllers
             var inventoryResponse = await _productRepository.GetInventoryAvailability(product.Id);
 
             var res = _mapper.Map<Product, ProductDetailsDTOSpe>(product);
-            res.Inventory = inventoryResponse;
+            res.Inventory = _mapper.Map<ProductAvailabilityWithId>(inventoryResponse);
             return Ok(res);
         }
 
@@ -84,21 +92,39 @@ namespace microStore.Services.ProductApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> ProductResults([FromBody] ProductRequestDTO requestDTO)
+        public async Task<IActionResult> ProductResults([FromBody] ProductSpecificationParams productParams)
         {
-            var res = await _productService.GetProductsResults(requestDTO);
-
-            if (res == null)
+            var spec = new ProductFilterSpecification(productParams);
+            var countSpec = new ProductFilterForCount(productParams);
+            var totalItems = await _productRepository.CountAsync(countSpec);
+            var products = await _productRepository.ListWithSpecificationAsync(spec);
+            var res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDetailsDTOSpe>>(products);
+            var brands = res
+                .Select(p => p.Brand)
+                .Distinct()
+                .ToList();
+            var properties = res
+                .SelectMany(p => p.Properties.Select(pr => new PropertiesFilter()
+                {
+                    Id = pr.Id,
+                    PropertyName = pr.property.PropertyName,
+                    PropertyValueName = pr.PropertyValueName
+                }))
+                .Distinct()
+                .ToList();
+            var categories = res
+                .SelectMany(p => p.Categories)
+                .Distinct()
+                .ToList();
+            var data = new ProductListDTO()
             {
-                _logger.LogWarning("Request error");
-                return BadRequest(res);
-            }
-            if (res.Products == null)
-            {
-                _logger.LogWarning("No hay resultados");
-                return NotFound(res);
-            }
-            return Ok(res);
+                Products = _mapper.Map<List<ProductBasicDTO>>(res),
+                Brands = brands,
+                Properties = properties,
+                Categories = categories,
+                Count = totalItems
+            };
+            return Ok(data);
         }
 
         [HttpGet]
@@ -138,17 +164,17 @@ namespace microStore.Services.ProductApi.Controllers
 
         }
         [HttpGet]
-        [Route("link/{link}")]
+        [Route("details/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetByLink(string link)
+        public async Task<IActionResult> GetByLink(int id)
         {
-            var spec = new ProductFilterSpecification(link);
+            var spec = new ProductFilterSpecification(id);
             var product = await _productRepository.GetEntityWithSpecification(spec);
             var inventoryResponse = await _productRepository.GetInventoryAvailability(product.Id);
 
             var res = _mapper.Map<Product, ProductDetailsDTOSpe>(product);
-            res.Inventory = inventoryResponse;
+            res.Inventory = _mapper.Map<ProductAvailabilityWithId>(inventoryResponse);
             return Ok(res);
         }
 
@@ -171,7 +197,7 @@ namespace microStore.Services.ProductApi.Controllers
         public async Task<IActionResult> Post([FromForm] IFormCollection form)
         {
             await _productRepository.CreateProduct(form);
-            return Ok(form["1"]);
+            return Ok(form["data"]);
         }
         [HttpPost("ProductList")]
         public async Task<object> getProductsByIds([FromBody] ProductIdsRequest ids)

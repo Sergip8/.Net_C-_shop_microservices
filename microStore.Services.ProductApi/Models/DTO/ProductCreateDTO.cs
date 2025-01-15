@@ -12,6 +12,6 @@
         public InventoryDTORequest Inventory { get; set; }
         public List<int> CategoryIds { get; set; }
         public List<ImageProductDTO> Images { get; set; }
-        public List<int> PropertyIds { get; set; }
+        public List<int> PropertyIds { get; set; } = new List<int>();
     }
 }

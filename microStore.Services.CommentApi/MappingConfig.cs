@@ -11,6 +11,8 @@ namespace microStore.Services.CommentApi
         {
             CreateMap<CommentHeader, CommentHeaderDTO>().ReverseMap();
             CreateMap<Comment, CommentDTO>().ReverseMap();
+            CreateMap<CommentHeader, CommentHeaderWriteDTO>().ReverseMap();
+            CreateMap<Comment, CommentWriteDTO>().ReverseMap();
         }
     }
 }

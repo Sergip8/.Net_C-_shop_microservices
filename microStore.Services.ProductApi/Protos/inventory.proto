@@ -4,17 +4,31 @@ option csharp_namespace = "InventoryServiceClient";
 
 service InventoryProto {
   rpc CheckAvailability(ProductRequest) returns (ProductAvailability);
+  rpc ProductsInventoryList(ProductRequestList) returns (ProductAvailabilityList);
   rpc CreateProductInventory(CreateInventoryRequest) returns (CreateInventoryResponse);
 }
 
 message ProductRequest {
   int32 productId = 1;
 }
-
+message ProductRequestList {
+  repeated int32 productIds = 1;
+}
+message ProductAvailabilityList {
+  repeated ProductAvailabilityWithId productAvailabilityWithIdList = 1;
+}
+message ProductAvailabilityWithId {
+  bool isAvailable = 1;
+  int32 stock = 2;
+  string vendorName = 3;
+  int32 productId = 4;
+  
+}
 message ProductAvailability {
   bool isAvailable = 1;
   int32 stock = 2;
   string vendorName = 3;
+  int32 Quantity = 4;
 }
 message CreateInventoryRequest{
    int32 ProductId = 1;

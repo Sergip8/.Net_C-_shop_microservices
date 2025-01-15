@@ -10,6 +10,7 @@ using microStore.Services.ProductApi.Models.DTO;
 using Newtonsoft.Json;
 using Polly;
 using System;
+using Google.Protobuf.Collections;
 using static SerilogTimings.Operation;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -30,30 +31,38 @@ namespace microStore.Services.ProductApi.Data
 
         public async Task CreateProduct(IFormCollection form)
         {
-            var images = await _uploadImages.UploadFile(form);
+            try
+            {
             var dto = JsonConvert.DeserializeObject<ProductCreateDTO>(form["data"]);
+            var images = await _uploadImages.UploadFile(form);
             var product = new Product
             {
                 Name = dto.Name,
                 Description = dto.Description,
-                Link = dto.Link,
                 Current_price = dto.Current_price,
                 Previous_price = dto.Previous_price,
                 BrandId = dto.BrandId,
                 Images = images,
                 Categories = _appContext.Categories.Where(c => dto.CategoryIds.Contains(c.Id)).ToList(),
-                Properties = _appContext.PropertyValues.Where(p => dto.PropertyIds.Contains(p.Id)).ToList(),
+                Properties = _appContext.PropertyValues.Where(p => dto.PropertyIds.Contains(p.Id)).ToList() ?? new List<PropertyValue>(),
 
             };
-
+            
             // Agregar el producto a la base de datos
             _appContext.Products.Add(product);
 
-
+            
             // Guardar los cambios
             await _appContext.SaveChangesAsync();
-
+            
             await CreateInventory(dto.Inventory, product.Id);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
         }
 
@@ -63,6 +72,15 @@ namespace microStore.Services.ProductApi.Data
             {
                 ProductId = id
             });
+        }
+        
+        public async Task<ProductAvailabilityList> GetProductInventoryList(RepeatedField<int> productIds)
+        {
+            var request = new ProductRequestList();
+            request.ProductIds.AddRange(productIds);
+            var response = await _inventoryClient.ProductsInventoryListAsync(request);
+
+            return response;
         }
 
         public async Task UpdateProduct(IFormCollection form)
@@ -78,7 +96,6 @@ namespace microStore.Services.ProductApi.Data
             var product = _appContext.Products.Include(p => p.Properties).Include(p => p.Categories).FirstOrDefault(p => p.Id == dto.Id);
             if (product != null)
             {
-                product.Link = dto.Link;
                 product.Name = dto.Name;
                 product.Description = dto.Description;
                 product.Current_price = dto.Current_price;

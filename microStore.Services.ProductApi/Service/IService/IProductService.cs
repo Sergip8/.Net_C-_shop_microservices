@@ -8,7 +8,7 @@ namespace microStore.Services.ProductApi.Service.IService
         Task<ResponseDTO> GetPageableProducts(int page, int size);
         Task<ResponseResultsDTO> GetProductsResults(ProductRequestDTO requestDTO);
         Task<ResponseDTO> GetProductById(int productId);
-        Task<ResponseDTO> GetProductByLink(string productId);
+        //Task<ResponseDTO> GetProductByLink(string productId);
         Task<ResponseDTO> GetHomeProducts();
         Task<ResponseDTO> GetProductByName(string search);
         Task<ResponseDTO> StoreProduct(ProductDTO productDTO);

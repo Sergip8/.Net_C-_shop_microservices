@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using microStore.Services.ProductApi.Data;
 using microStore.Services.ProductApi.Models;
 using microStore.Services.ProductApi.Models.DTO;
@@ -60,6 +61,33 @@ namespace microStore.Services.ProductApi.Controllers
                 _response.Message = e.Message;
             }
             return _response;
+
+        }
+        [HttpGet]
+        [Route("propertiesResults/{query}")]
+        public object GetAll(string query)
+        {
+            try
+            {
+
+                var propertyTypes = _db.Properties
+                    .SelectMany(pr => pr.PropertyValues, (property, propertyValues) => new
+                    {
+                        Id = propertyValues.Id,
+                        PropertyName = property.PropertyName +" - "+ propertyValues.PropertyValueName,
+                    })
+                    .Where(item => item.PropertyName.Contains(query))
+                    .ToList();
+
+                return propertyTypes;
+
+            }
+            catch (Exception e)
+            {
+                return "no encontro propriedades";
+              
+            }
+           
 
         }
     }

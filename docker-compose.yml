@@ -67,6 +67,12 @@ services:
       - mssqldata
     networks:
       - backend
+  chatbot:
+    build:
+      context: .
+      dockerfile: microstore.Chatbot/Dockerfile
+    networks:
+      - backend
   gateway:
     build:
       context: .

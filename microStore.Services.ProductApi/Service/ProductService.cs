@@ -92,6 +92,7 @@ namespace microStore.Services.ProductApi.Service
                         }).ToList(),
                         images = product.Images.Select(c => new
                         {
+                            
                             c.ImageUrl,
                             c.ImageLabel
 
@@ -181,7 +182,7 @@ namespace microStore.Services.ProductApi.Service
             return _response;
         }
 
-        public async Task<ResponseDTO> GetProductByLink(string link)
+        /*public async Task<ResponseDTO> GetProductByLink(string link)
         {
             try
             {
@@ -272,7 +273,7 @@ namespace microStore.Services.ProductApi.Service
                 _response.Message = e.Message;
             }
             return _response;
-        }
+        }*/
 
         public async Task<ResponseDTO> GetProductByName(string search)
         {
@@ -477,7 +478,6 @@ namespace microStore.Services.ProductApi.Service
 
                     Product product = _mapper.Map<Product>(productDTO);
                     product.Categories = categories;
-                    product.Link = product.Name.ToLower().Replace(" ", "-");
                     _db.Products.Add(product);
 
                     await _db.SaveChangesAsync();
@@ -518,12 +518,11 @@ namespace microStore.Services.ProductApi.Service
                 //var categoryIds = productDTO.Categories.Select(c => c.CategoryId);
                 //IEnumerable<Category> categories = [.. _db.Categories.Where(c => categoryIds.Contains(c.CategoryId))];
 
-                var productDb = await _db.Products.FindAsync(productDTO.Product.ProductId);
+                var productDb = await _db.Products.FindAsync(productDTO.Product.Id);
 
                 if (productDb != null)
                 {
                     productDb.Name = productDTO.Product.Name;
-                    productDb.Link = productDTO.Product.Link;
                     productDb.Description = productDTO.Product.Description;
                     productDb.Current_price = productDTO.Product.Current_price;
                     productDb.Previous_price = productDTO.Product.Previous_price;

@@ -1,33 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.AuthApi\\microStore.Services.AuthApi.csproj": {}
+    "/home/sag/Documents/net projects/microStore/microStore.Services.AuthApi/microStore.Services.AuthApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj": {
+    "/home/sag/Documents/net projects/microStore/EventBusMessages/EventBusMessages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj",
+        "projectUniqueName": "/home/sag/Documents/net projects/microStore/EventBusMessages/EventBusMessages.csproj",
         "projectName": "EventBusMessages",
-        "projectPath": "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj",
-        "packagesPath": "C:\\Users\\sagp7\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\obj\\",
+        "projectPath": "/home/sag/Documents/net projects/microStore/EventBusMessages/EventBusMessages.csproj",
+        "packagesPath": "/home/sag/.nuget/packages/",
+        "outputPath": "/home/sag/Documents/net projects/microStore/EventBusMessages/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sagp7\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/sag/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\sagp7\\source\\repos\\dotnetMicro\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,42 +56,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.AuthApi\\microStore.Services.AuthApi.csproj": {
+    "/home/sag/Documents/net projects/microStore/microStore.Services.AuthApi/microStore.Services.AuthApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.AuthApi\\microStore.Services.AuthApi.csproj",
+        "projectUniqueName": "/home/sag/Documents/net projects/microStore/microStore.Services.AuthApi/microStore.Services.AuthApi.csproj",
         "projectName": "microStore.Services.AuthApi",
-        "projectPath": "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.AuthApi\\microStore.Services.AuthApi.csproj",
-        "packagesPath": "C:\\Users\\sagp7\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sagp7\\source\\repos\\microStore\\microStore.Services.AuthApi\\obj\\",
+        "projectPath": "/home/sag/Documents/net projects/microStore/microStore.Services.AuthApi/microStore.Services.AuthApi.csproj",
+        "packagesPath": "/home/sag/.nuget/packages/",
+        "outputPath": "/home/sag/Documents/net projects/microStore/microStore.Services.AuthApi/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sagp7\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/sag/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Users\\sagp7\\source\\repos\\dotnetMicro\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj": {
-                "projectPath": "C:\\Users\\sagp7\\source\\repos\\microStore\\EventBusMessages\\EventBusMessages.csproj"
+              "/home/sag/Documents/net projects/microStore/EventBusMessages/EventBusMessages.csproj": {
+                "projectPath": "/home/sag/Documents/net projects/microStore/EventBusMessages/EventBusMessages.csproj"
               }
             }
           }
@@ -113,11 +92,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -182,7 +156,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -135,7 +135,6 @@ namespace microStore.Services.ProductApi.Data
             {
                 Id = 1,
                 Name = "Samosa",
-                Link = "samosa-1",
                 Current_price = 3000000,
                 Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
@@ -145,7 +144,6 @@ namespace microStore.Services.ProductApi.Data
             {
                 Id = 2,
                 Name = "Paneer Tikka",
-                Link = "paneer-tikka-2",
                 Current_price = 3000000,
                 Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
@@ -155,7 +153,6 @@ namespace microStore.Services.ProductApi.Data
             {
                 Id = 3,
                 Name = "Sweet Pie",
-                Link = "sweet-pie-3",
                 Current_price = 3000000,
                 Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
@@ -165,7 +162,6 @@ namespace microStore.Services.ProductApi.Data
             {
                 Id = 4,
                 Name = "Pav Bhaji",
-                Link = "pav-bhaji-4",
                 Current_price = 3000000,
                 Previous_price = 3500000,
                 Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",

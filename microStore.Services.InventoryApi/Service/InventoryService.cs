@@ -1,4 +1,7 @@
-﻿namespace microStore.Services.InventoryApi.Service
+﻿using Google.Protobuf.Collections;
+using Newtonsoft.Json;
+
+namespace microStore.Services.InventoryApi.Service
 {
 
     using Grpc.Core;
@@ -19,6 +22,8 @@
 
         public override async Task<ProductAvailability> CheckAvailability(ProductRequest request, ServerCallContext context)
         {
+            try
+            {
             var inventory = await _dbContext.Inventories.Where(x => x.ProductId == request.ProductId)
                  .Join(
                     _dbContext.Vendors,
@@ -31,8 +36,19 @@
                         vendorName = vendor.VendorName
 
                     }).FirstAsync();
+            Console.WriteLine("-----------");
+            Console.WriteLine(JsonConvert.SerializeObject(inventory));
+            
+            return new ProductAvailability
+            {
+                IsAvailable = inventory.quantity > 0,
+                Stock = inventory.quantity,
+                VendorName = inventory.vendorName
+            };
+            
 
-            if (inventory == null)
+            }
+            catch (Exception e)
             {
                 return new ProductAvailability
                 {
@@ -41,13 +57,47 @@
                     VendorName = ""
                 };
             }
+           
 
-            return new ProductAvailability
+        }
+
+        public override async Task<ProductAvailabilityList> ProductsInventoryList(ProductRequestList request,
+            ServerCallContext context)
+        {
+            Console.WriteLine("---------");
+            Console.WriteLine(JsonConvert.SerializeObject(request.ProductIds));
+            Console.WriteLine("---------");
+
+            var inventory = await _dbContext.Inventories.Where(x => request.ProductIds.Contains(x.ProductId))
+                .Join(
+                    _dbContext.Vendors,
+                    inventory => inventory.VendorId,
+                    vendor => vendor.VendorId,
+                    (inventory, vendor) => new
+                    {
+                        inventoryId = inventory.InventoryId,
+                        quantity = inventory.Quantity,
+                        vendorName = vendor.VendorName,
+                        productId = inventory.ProductId,
+
+                    }).ToListAsync();
+            var response = new ProductAvailabilityList();
+            if (inventory == null)
             {
-                IsAvailable = inventory.quantity > 0,
-                Stock = inventory.quantity,
-                VendorName = inventory.vendorName
-            };
+                Console.WriteLine("There are no products in inventory.");
+            }
+            Console.WriteLine("---------");
+            Console.WriteLine(JsonConvert.SerializeObject(inventory));
+            Console.WriteLine("---------");
+            var productAvailabilityWithId = inventory.Select(i => new ProductAvailabilityWithId
+            {
+                IsAvailable = i.quantity > 0,
+                Stock = i.quantity,
+                VendorName = i.vendorName,
+                ProductId = i.productId
+            });
+            response.ProductAvailabilityWithIdList.AddRange(productAvailabilityWithId);
+            return response;
         }
         public override async Task<CreateInventoryResponse> CreateProductInventory(CreateInventoryRequest createInventory, ServerCallContext context)
         {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-
+using InventoryServiceClient;
 using microStore.Services.ProductApi.Models;
 using microStore.Services.ProductApi.Models.DTO;
 
@@ -12,10 +12,12 @@ namespace microStore.Services.ProductApi
             CreateMap<ProductDTO, Product>();
             CreateMap<Product, ProductDTO>();
             CreateMap<Product, ProductDetailsDTOSpe>();
+            CreateMap<ProductDetailsDTOSpe, ProductBasicDTO>();
             CreateMap<ProductImages, ImageProductDTO>();
             CreateMap<PropertyValue, PropertyValuesDTO>();
             CreateMap<Property, PropertiesDTO>();
             CreateMap<PropertyType, PropertyTypeDTO>();
+            CreateMap<ProductAvailabilityWithId, ProductAvailability>().ReverseMap();
 
 
 

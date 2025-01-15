@@ -37,7 +37,7 @@ services:
     container_name: products
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Product;Persist Security Info=False;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
+      - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Product;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
     ports:
       - "8003:8080"
   shoppingcart:
@@ -82,6 +82,12 @@ services:
       - "ConnectionStrings:SqlConnection=Server=mssqldata;Database=Micro_Store_Order;User Id=sa;Password=aDmin1234!;Trust Server Certificate=true;"
     ports:
       - "8009:8080"
+  chatbot:
+    container_name: chatbot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8010:8080"
   gateway:
     container_name: gateway
     environment:

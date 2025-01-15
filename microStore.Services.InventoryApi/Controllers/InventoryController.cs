@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Azure;
-using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using microStore.Services.InventoryApi.Data;
 using microStore.Services.InventoryApi.Models.DTO;

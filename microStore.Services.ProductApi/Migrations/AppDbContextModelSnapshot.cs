@@ -280,10 +280,6 @@ namespace microStore.Services.ProductApi.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -305,7 +301,6 @@ namespace microStore.Services.ProductApi.Migrations
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             IsAvailable = true,
-                            Link = "samosa-1",
                             Name = "Samosa",
                             Previous_price = 3500000m
                         },
@@ -316,7 +311,6 @@ namespace microStore.Services.ProductApi.Migrations
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             IsAvailable = true,
-                            Link = "paneer-tikka-2",
                             Name = "Paneer Tikka",
                             Previous_price = 3500000m
                         },
@@ -327,7 +321,6 @@ namespace microStore.Services.ProductApi.Migrations
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             IsAvailable = true,
-                            Link = "sweet-pie-3",
                             Name = "Sweet Pie",
                             Previous_price = 3500000m
                         },
@@ -338,7 +331,6 @@ namespace microStore.Services.ProductApi.Migrations
                             Current_price = 3000000m,
                             Description = " Quisque vel lacus ac magna, vehicula sagittis ut non lacus.<br/> Vestibulum arcu turpis, maximus malesuada neque. Phasellus commodo cursus pretium.",
                             IsAvailable = true,
-                            Link = "pav-bhaji-4",
                             Name = "Pav Bhaji",
                             Previous_price = 3500000m
                         });

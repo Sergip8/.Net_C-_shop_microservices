@@ -9,7 +9,6 @@ namespace microStore.Services.ProductApi.Models
 
         [Required]
         public string Name { get; set; }
-        public string Link { get; set; }
         public string Description { get; set; }
         public decimal Current_price { get; set; }
         public decimal Previous_price { get; set; }

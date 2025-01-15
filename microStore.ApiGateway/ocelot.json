@@ -55,7 +55,7 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/ProductApi/{link}",
+      "DownstreamPathTemplate": "/api/ProductApi/details/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -63,7 +63,7 @@
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/ProductApi/{link}",
+      "UpstreamPathTemplate": "/api/ProductApi/details/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
@@ -158,6 +158,18 @@
       ],
       "UpstreamPathTemplate": "/api/Comment/{productId}/{page}/{size}",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Comment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "comments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Comment",
+      "UpstreamHttpMethod": [ "POST" ]
     },
 
     //"AuthApi": "https://localhost:8002",

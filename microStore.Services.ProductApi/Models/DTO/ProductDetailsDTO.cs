@@ -25,7 +25,9 @@ namespace microStore.Services.ProductApi.Models.DTO
         public decimal Previous_price { get; set; }
         public BrandDTO Brand { get; set; }
         public ICollection<ImageProductDTO> Images { get; set; }
-        public ProductAvailability Inventory { get; set; }
+        public ICollection<CategoryDTO> Categories { get; set; }
+
+        public ProductAvailabilityWithId Inventory { get; set; }
         public ICollection<PropertyValuesDTO> Properties { get; set; }
 
     }
@@ -45,8 +47,9 @@ namespace microStore.Services.ProductApi.Models.DTO
     }
     public class PropertyValuesDTO
     {
-
+        public int Id { get; set; } 
         public string PropertyValueName { get; set; }
+        
 
         public PropertiesDTO property { get; set; }
 

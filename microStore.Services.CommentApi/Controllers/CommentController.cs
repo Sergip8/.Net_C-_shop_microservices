@@ -50,7 +50,7 @@ namespace microStore.Services.CommentApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> StoreComment([FromBody] CommentHeaderDTO commentDTO)
+        public async Task<IActionResult> StoreComment([FromBody] CommentHeaderWriteDTO commentDTO)
         {
             var res = await _commentService.StoreComment(commentDTO);
 

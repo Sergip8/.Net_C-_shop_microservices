@@ -18,6 +18,7 @@ using microStore.Services.ProductApi.Service;
 using microStore.Services.ProductApi.Service.IService;
 using Serilog;
 using System.Text;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 Log.Logger = new LoggerConfiguration()
         .WriteTo.Console()
@@ -73,11 +74,13 @@ try
     builder.Services.AddScoped<IProductRepository, ProductRepository>();
     builder.Services.AddScoped<UploadImages>();
     builder.Services.AddAuthorization();
-    builder.WebHost.UseUrls("http://0.0.0.0:8080");
+    
     builder.Services.AddAutoMapper(typeof(ProductMappingProfile));
+    
+    builder.WebHost.UseUrls("http://0.0.0.0:8080");
     builder.Services.AddGrpcClient<InventoryProto.InventoryProtoClient>(o =>
     {
-        o.Address = new Uri("http://inventory:8080");
+        o.Address = new Uri("http://inventory:8081");
     });
     var app = builder.Build();
     if (app.Environment.IsDevelopment())
@@ -96,14 +99,14 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    //    if (_db.Database.GetPendingMigrations().Any())
-    //    {
-    //        _db.Database.Migrate();
-    //    }
-    //}
+     /*using (var scope = app.Services.CreateScope())
+     {
+         var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+         if (_db.Database.GetPendingMigrations().Any())
+         {
+           _db.Database.Migrate();
+        }
+     }*/
     app.MapHealthChecks("/liveness", new HealthCheckOptions
     {
         Predicate = r => r.Name.Contains("self")

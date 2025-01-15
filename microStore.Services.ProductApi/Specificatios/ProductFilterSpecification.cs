@@ -9,8 +9,9 @@ namespace microStore.Services.ProductApi.Specificatios
 
         public ProductFilterSpecification(ProductSpecificationParams productParams) : base(p =>
             (string.IsNullOrEmpty(productParams.Search) || p.Name.ToLower().Contains(productParams.Search)) &&
-            (!productParams.BrandId.HasValue || p.BrandId == productParams.BrandId) &&
-            p.IsAvailable == true
+            (!productParams.BrandId.HasValue || p.BrandId == productParams.BrandId) 
+            &&(productParams.PropertiesId.Count == 0 || p.Properties.Any(pro => productParams.PropertiesId.Contains(pro.Id))) 
+            //&& p.IsAvailable == true
         )
         {
             // Includes
@@ -71,7 +72,7 @@ namespace microStore.Services.ProductApi.Specificatios
             //AddThenInclude(q => q.Include(p => p.Properties).ThenInclude(e => e.Property));
             AddInclude($"{nameof(Product.Properties)}.{nameof(PropertyValue.Property)}.{nameof(Property.PropertyType)}");
         }
-        public ProductFilterSpecification(string link) : base(p => p.Link == link)
+        /*public ProductFilterSpecification(string link) : base(p => p.Link == link)
         {
             AddInclude(p => p.Brand);
             AddInclude(p => p.Categories);
@@ -79,7 +80,7 @@ namespace microStore.Services.ProductApi.Specificatios
             //AddInclude(p => p.Properties);
             //AddThenInclude(q => q.Include(p => p.Properties).ThenInclude(e => e.Property));
             AddInclude($"{nameof(Product.Properties)}.{nameof(PropertyValue.Property)}.{nameof(Property.PropertyType)}");
-        }
+        }*/
         public ProductFilterSpecification() : base()
         {
             AddInclude(p => p.Brand);
@@ -89,13 +90,23 @@ namespace microStore.Services.ProductApi.Specificatios
 
 
         }
+        public ProductFilterSpecification(int page, int size ) : base()
+        {
+            AddInclude(p => p.Brand);
+            AddInclude(p => p.Categories);
+            AddInclude(p => p.Images);
+            AddInclude(p => p.Properties);
+            ApplyPaging(page, size);
+
+
+        }
     }
     public class ProductSpecificationParams
     {
         private const int MaxPageSize = 24;
         public int PageIndex { get; set; } = 1;
 
-        private int _pageSize = 8;
+        private int _pageSize = 14;
 
         public int PageSize
         {
@@ -104,8 +115,9 @@ namespace microStore.Services.ProductApi.Specificatios
         }
 
         public int? BrandId { get; set; }
+        public List<int> PropertiesId { get; set; } = new List<int>();
         public string? Sort { get; set; }
-        private string _search;
+        private string _search = "";
         public string? Search
         {
             get => _search;

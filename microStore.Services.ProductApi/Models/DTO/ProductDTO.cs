@@ -9,14 +9,24 @@ namespace microStore.Services.ProductApi.Models.DTO
         public List<ImageProductDTO> Images { get; set; }
         public ProductBasicDTO Product { get; set; }
     }
+    public class ProductListDTO
+    {
+        public List<BrandDTO> Brands { get; set; }
+        public List<CategoryDTO> Categories { get; set; }
+        public List<ProductBasicDTO> Products { get; set; }
+        public List<PropertiesFilter> Properties { get; set; }
+        public ICollection<ImageProductDTO> Images { get; set; }
+        public int Count { get; set; }
+    }
     public class ProductBasicDTO
     {
-        public int ProductId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Link { get; set; }
         public string Description { get; set; }
         public decimal Current_price { get; set; }
         public decimal Previous_price { get; set; }
+        public BrandDTO Brand { get; set; }
 
     }
 
@@ -41,7 +51,7 @@ namespace microStore.Services.ProductApi.Models.DTO
     }
     public class ImageProductDTO
     {
-        public int ImageId { get; set; }
+        public int Id { get; set; }
         public string ImageLabel { get; set; }
         public string ImageUrl { get; set; }
     }
@@ -54,5 +64,15 @@ namespace microStore.Services.ProductApi.Models.DTO
         public string ImageUrl { get; set; }
         public BrandProductDTO Brand { get; set; }
         public IEnumerable<CategoryProductDTO> CategoryProduct { get; set; }
+    }
+
+    public class PropertiesFilter
+    {
+       
+            public int Id { get; set; }
+            public string PropertyName { get; set; }
+            public string PropertyValueName { get; set; }
+       
+
     }
 }

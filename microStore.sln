@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{47
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microStore.Products.UnitTest", "microStore.Products.UnitTest\microStore.Products.UnitTest.csproj", "{442FB7E3-FB1F-4A56-A77E-E5E783D44CF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microstore.Chatbot", "microstore.Chatbot\microstore.Chatbot.csproj", "{7C2C2F59-94A9-4E72-8702-546A36C00E31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{442FB7E3-FB1F-4A56-A77E-E5E783D44CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{442FB7E3-FB1F-4A56-A77E-E5E783D44CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{442FB7E3-FB1F-4A56-A77E-E5E783D44CF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2C2F59-94A9-4E72-8702-546A36C00E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2C2F59-94A9-4E72-8702-546A36C00E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2C2F59-94A9-4E72-8702-546A36C00E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2C2F59-94A9-4E72-8702-546A36C00E31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{6620289C-36B0-4F29-9A29-C13A63CF7EAB} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
 		{474FA1B1-BB54-4EC1-A502-C65396E7B399} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
 		{442FB7E3-FB1F-4A56-A77E-E5E783D44CF6} = {474FA1B1-BB54-4EC1-A502-C65396E7B399}
+		{7C2C2F59-94A9-4E72-8702-546A36C00E31} = {53ABBFCA-CE79-4B39-97C3-7A1C31261E90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {510D1D17-B139-4CEF-B1B1-C166CC3952EC}

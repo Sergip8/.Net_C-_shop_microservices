@@ -15,9 +15,9 @@ namespace microStore.Services.ProductApi.Data
             _dbContext = dbContext;
         }
 
-        public Task<int> CountAsync(ISpecification<T> specification)
+        public async Task<int> CountAsync(ISpecification<T> specification)
         {
-            throw new NotImplementedException();
+            return await ApplySpecification(specification).CountAsync();
         }
 
         public Task<T> Create(T entity)
