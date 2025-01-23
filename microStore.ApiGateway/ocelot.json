@@ -17,6 +17,32 @@
 
     },
     {
+      "DownstreamPathTemplate": "/api/ProductApi/related-products/{categoryId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ProductApi/related-products/{categoryId}",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProductApi/recent-products/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ProductApi/recent-products/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+
+    },
+    {
       "DownstreamPathTemplate": "/api/ProductApi/inventory/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

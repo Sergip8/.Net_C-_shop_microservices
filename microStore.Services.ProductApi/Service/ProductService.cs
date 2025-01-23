@@ -68,6 +68,26 @@ namespace microStore.Services.ProductApi.Service
             return _response;
         }
 
+        public async Task<ResponseDTO> GetRelatedProducts(int categoryId)
+        {
+            try
+            {
+                var totalCount = _db.Products.Count();
+                var products = await _db.Products.Include(p => p.Images).Where(pro => pro.Categories.Any(cat => cat.Id == categoryId))
+                    .Take(5).ToListAsync();
+                _response.Data = _mapper.Map<IEnumerable<ProductBasicDTO>>(products);
+                return _response;
+            }
+            catch (Exception e)
+            {
+               _response.Success = false;
+               _response.Message = e.Message;
+               return _response;
+            }
+            
+         
+        }
+
         public async Task<ResponseDTO> GetHomeProducts()
         {
             try
@@ -464,6 +484,8 @@ namespace microStore.Services.ProductApi.Service
             }
             return _results;
         }
+        
+       
 
         public async Task<ResponseDTO> StoreProduct(ProductDTO productDTO)
         {

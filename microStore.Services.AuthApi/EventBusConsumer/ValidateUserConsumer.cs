@@ -16,7 +16,7 @@ namespace microStore.Services.CommentApi.EventBusConsumer
             var userId = context.Message.UserId;
             Console.WriteLine(userId);
             // Lógica para verificar si el usuario existe
-            var isValid = CheckUserExists(userId); // Implementa esta lógica
+            var isValid = CheckUserExists(userId);
 
             await context.RespondAsync(new ValidateUserResponse { IsValid = isValid });
         }

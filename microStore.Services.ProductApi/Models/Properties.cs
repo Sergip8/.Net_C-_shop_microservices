@@ -7,7 +7,7 @@ namespace microStore.Services.ProductApi.Models
     public class Property : BaseEntity
     {
 
-        public bool IsPrincipal { get; set; }
+        public bool IsPrincipal { get; set; } = false;
         public string PropertyName { get; set; }
 
         [ForeignKey("PropertyTypeId")]

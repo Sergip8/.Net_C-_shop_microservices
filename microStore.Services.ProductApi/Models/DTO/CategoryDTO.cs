@@ -8,4 +8,10 @@
         public int CategoryParentId { get; set; }
         public IEnumerable<int> ProductIds { get; set; }
     }
+
+    public class CategoryCountDTO
+    {
+        public int Count { get; set; }  
+        public CategoryDTO Categories { get; set; }
+    }
 }

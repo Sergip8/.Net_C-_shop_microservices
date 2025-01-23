@@ -100,8 +100,12 @@ namespace microStore.Services.ProductApi.Controllers
             var products = await _productRepository.ListWithSpecificationAsync(spec);
             var res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDetailsDTOSpe>>(products);
             var brands = res
-                .Select(p => p.Brand)
-                .Distinct()
+                .GroupBy(p => p.Brand)
+                .Select(group => new BrandCountDTO()
+                {
+                    Brand = group.Key,
+                    Count = group.Count()
+                })
                 .ToList();
             var properties = res
                 .SelectMany(p => p.Properties.Select(pr => new PropertiesFilter()
@@ -110,12 +114,41 @@ namespace microStore.Services.ProductApi.Controllers
                     PropertyName = pr.property.PropertyName,
                     PropertyValueName = pr.PropertyValueName
                 }))
-                .Distinct()
+                .GroupBy(pr => new { pr.Id, pr.PropertyName, pr.PropertyValueName })
+                .Select(group => new PropertyCountDTO()
+                {
+                    Property = new PropertiesFilter()
+                    {
+                        Id = group.Key.Id,
+                        PropertyName = group.Key.PropertyName,
+                        PropertyValueName = group.Key.PropertyValueName
+                    },
+                    Count = group.Count() // Conteo de apariciones
+                })
                 .ToList();
             var categories = res
-                .SelectMany(p => p.Categories)
-                .Distinct()
+                .SelectMany(p => p.Categories.Select(c => new CategoryDTO()
+                {
+                    Id = c.Id,
+                    CategoryName = c.CategoryName,
+                    CategoryLevel = c.CategoryLevel,
+                    CategoryParentId = c.CategoryParentId,
+                   
+                }))
+                .GroupBy(pr => new { pr.Id, pr.CategoryName, pr.CategoryLevel, pr.CategoryParentId })
+                .Select(group => new CategoryCountDTO()
+                {
+                        Categories = new CategoryDTO()
+                        {
+                            Id = group.Key.Id,
+                            CategoryName = group.Key.CategoryName,
+                            CategoryLevel = group.Key.CategoryLevel,
+                            CategoryParentId = group.Key.CategoryParentId,
+                        },
+                    Count = group.Count() // Conteo de apariciones
+                })
                 .ToList();
+           
             var data = new ProductListDTO()
             {
                 Products = _mapper.Map<List<ProductBasicDTO>>(res),
@@ -188,6 +221,27 @@ namespace microStore.Services.ProductApi.Controllers
             var products = await _productRepository.SampleEntities(spec);
             var res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDetailsDTOSpe>>(products);
             return Ok(res);
+        }
+        [HttpGet]
+        [Route("recent-products")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> RecentProducts([FromQuery]int[] productId)
+        {
+            var spec = new ProductFilterSpecification(productId);
+            Console.WriteLine();
+            var products = await _productRepository.SampleEntities(spec);
+            var res = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDetailsDTOSpe>>(products);
+            return Ok(res);
+        }
+        [HttpGet]
+        [Route("related-products/{categoryId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> RelatedProducts(int categoryId)
+        {
+          var products = await _productService.GetRelatedProducts(categoryId);
+            return Ok(products);
         }
 
         [HttpPost]

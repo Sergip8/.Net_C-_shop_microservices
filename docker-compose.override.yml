@@ -11,12 +11,11 @@ services:
       - fs_mssqldata:/var/opt/mssql
   rabbitmq:
     container_name: rabbitmq
-    restart: always
     ports:
       - 5672:5672
       - 15672:15672
     volumes: 
-      - rabbitmq:/var/lib/rabbitmq
+      - rabbitmq:/var/lib/rabbitmq/mnesia
   seq:
     container_name: seq
     environment:

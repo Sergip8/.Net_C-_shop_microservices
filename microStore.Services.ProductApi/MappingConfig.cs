@@ -11,6 +11,8 @@ namespace microStore.Services.ProductApi
         {
             CreateMap<ProductDTO, Product>();
             CreateMap<Product, ProductDTO>();
+            CreateMap<ProductBasicDTO, Product>();
+            CreateMap<Product, ProductBasicDTO>();
             CreateMap<Product, ProductDetailsDTOSpe>();
             CreateMap<ProductDetailsDTOSpe, ProductBasicDTO>();
             CreateMap<ProductImages, ImageProductDTO>();

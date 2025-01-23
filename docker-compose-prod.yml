@@ -1,83 +1,76 @@
-version: '3.9'
 services:
   mssqldata:
-    image: mcr.microsoft.com/mssql/server:2022-latest    
+    build: .
+    image: microstoreimages.azurecr.io/mcr.microsoft.com/mssql/server:2022-latest    
     networks:
       - backend
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    build: .
+    image: microstoreimages.azurecr.io/rabbitmq:3-management-alpine
     networks:
       - backend
   seq:
-    image: datalust/seq:latest
+    build: .
+    image: microstoreimages.azurecr.io/datalust/seq:latest
   products:
-    build:
-      context: .
-      dockerfile: microStore.Services.ProductApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-products:latest
     depends_on:
       - mssqldata
     networks:
       - backend 
   inventory:
-    build:
-      context: .
-      dockerfile: microStore.Services.InventoryApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-inventory:latest
     depends_on:
       - mssqldata
       - rabbitmq
     networks:
       - backend
   auth:
-    build:
-      context: .
-      dockerfile: microStore.Services.AuthApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-auth:latest
     depends_on:
       - rabbitmq
       - mssqldata
     networks:
       - backend
   shoppingcart:
-    build:
-      context: .
-      dockerfile: microStore.Services.ShoppingCartApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-shoppingcart:latest
     depends_on:
       - mssqldata
     networks:
       - backend
   coupon:
-    build:
-      context: .
-      dockerfile: microStore.Services.CouponApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-coupon:latest
     depends_on:
       - mssqldata
     networks:
       - backend
   comments:
-    build:
-      context: .
-      dockerfile: microStore.Services.CommentApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-comments:latest
     depends_on:
       - mssqldata
     networks:
       - backend
   order:
-    build:
-      context: .
-      dockerfile: microStore.Services.OrderApi/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-order:latest
     depends_on:
       - mssqldata
     networks:
       - backend
   chatbot:
-    build:
-      context: .
-      dockerfile: microstore.Chatbot/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-chatbot:latest
     networks:
       - backend
   gateway:
-    build:
-      context: .
-      dockerfile: microStore.ApiGateway/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-gateway:latest
     depends_on:
       - products
       - shoppingcart
@@ -87,9 +80,8 @@ services:
     networks:
       - backend
   gatewayadmin:
-    build:
-      context: .
-      dockerfile: ApiAdminGateway/Dockerfile
+    build: .
+    image: microstoreimages.azurecr.io/microstore-gatewayadmin:latest
     depends_on:
       - products
       - shoppingcart
